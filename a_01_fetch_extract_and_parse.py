@@ -17,13 +17,13 @@ else:
     fetch_and_parse_first = strtobool(sys.argv[1])
     
 if fetch_and_parse_first:
-#    #Get imsdb scripts in html and store in html_dir
-#    f=fetch_scripts('imsdb', html_dir, pdf_dir, text_dir)
-#    f.fetch_data()
+    #Get imsdb scripts in html and store in html_dir
+    f=fetch_scripts('imsdb', html_dir, pdf_dir, text_dir)
+    f.fetch_data()
 
-#    #Get imsdb scripts in html and store in html_dir
-#    f=fetch_scripts('dailyscript', html_dir, pdf_dir, text_dir)
-#    f.fetch_data()
+    #Get imsdb scripts in html and store in html_dir
+    f=fetch_scripts('dailyscript', html_dir, pdf_dir, text_dir)
+    f.fetch_data()
 
     #Extract text scripts from fetched html files
     e=extract_scripts(html_dir, pdf_dir, text_dir)
