@@ -47,9 +47,9 @@ class fetch_scripts:
         if __detailedlog__:
             print("Fetching data from {0}...".format(self.source))
 
-        encountered_movies_list = os.listdir(self.html_dir)+ \
-            os.listdir(self.pdf_dir)+ \
-            os.listdir(self.text_dir)
+        encountered_movies_list = []
+
+        self.total_fetched = 0
 
         for source_url in self.source_url_list:
             response = urlopen(source_url)        
@@ -95,38 +95,13 @@ class fetch_scripts:
                 movie_name=movie_name.replace('&', 'and')
 
                 if cur_url.get('href').lower().endswith('pdf'):
-                    movie_name=movie_name+'.pdf'
-                    if movie_name in encountered_movies_list:
-                        continue
-                    file_name=os.path.join(self.pdf_dir,movie_name)
-                    out_ptr = open(file_name, 'wb')
-                    out_ptr.write(movie_response.read())
-                    out_ptr.close()
                     self.pdf_counter += 1
     
                 elif cur_url.get('href').lower().endswith('html') or \
                     cur_url.get('href').lower().endswith('htm'):
-                    movie_name=movie_name+'.html'
-                    if movie_name in encountered_movies_list:
-                        continue
-                    fetched_text=movie_response.read().decode('utf8', 'ignore')    
-                    #cleanup fetched html using the html5lib parser
-                    soup=BeautifulSoup(fetched_text, 'html5lib')
-                    file_name=os.path.join(self.html_dir,movie_name)
-                    out_ptr = open(file_name, 'w')
-                    out_ptr.write(soup.decode())
-                    out_ptr.close()
-                    self.html_counter += 1        
-    
+                    self.html_counter += 1
+ 
                 elif cur_url.get('href').lower().endswith('txt'):
-                    movie_name=movie_name+'.txt'
-                    if movie_name in encountered_movies_list:
-                        continue
-                    file_name=os.path.join(self.text_dir, movie_name)
-                    out_ptr = open(file_name, 'w')
-                    file_contents=movie_response.read().decode('utf8', 'ignore')
-                    out_ptr.write(file_contents)
-                    out_ptr.close()
                     self.text_counter += 1
 
                 else:
@@ -136,7 +111,7 @@ class fetch_scripts:
 
                 encountered_movies_list.append(movie_name)
 
-                if __detailedlog__:
+                if False:
                     print("Fetched movie: {0}".format(movie_name))
             
         self.print_fetch_stats()
