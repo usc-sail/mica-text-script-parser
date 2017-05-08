@@ -12,16 +12,16 @@ text_dir = '../Data/scripts_txt'
 out_dir = '../Data/utterances_with_charnames'
 
 if len(sys.argv)==1:
-    fetch_and_parse_first = False
+    fetch_and_parse_first = True
 else:
     fetch_and_parse_first = strtobool(sys.argv[1])
     
 if fetch_and_parse_first:
-    #Get imsdb scripts in html and store in html_dir
+    #Get imsdb scripts
     f=fetch_scripts('imsdb', html_dir, pdf_dir, text_dir)
     f.fetch_data()
 
-    #Get imsdb scripts in html and store in html_dir
+    #Get dailyscript scripts
     f=fetch_scripts('dailyscript', html_dir, pdf_dir, text_dir)
     f.fetch_data()
 
