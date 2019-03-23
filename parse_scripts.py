@@ -74,7 +74,7 @@ class script_parser:
         speakermode = re.compile(r'\'s voice$|\'s voices$|\' voice$|\
             \' voices$|\'s voice-over$|\' voice-over$|\'s voice over$', re.IGNORECASE)
         speakermodeinbraces = re.compile(r'\(.*\)')
-        utterancemodeinbraces = re.compile(r'^\(.*\)')
+        utterancemodeinbraces = re.compile(r'^\(.*?\)')
         specialchars = re.compile(r'[^\w\s ]*')
         allspecialchars = re.compile(r'^[^\w\s ]*$')
         location = re.compile(r'\d{0,4}[ ]*int[\. ].*|\d{0,4}[ ]*interior.*\
@@ -122,7 +122,7 @@ class script_parser:
 
         i=0 
         context=[]
-        utterances=[]
+        parsed_lines=[]
 
         while i<len(lines):
             line=lines[i]
@@ -130,12 +130,12 @@ class script_parser:
             line_copy=line
             i+=1
 
-            if i==len(lines):
-                context.append(line)
-                break
-
             if line.strip()=='':
                 continue
+
+            if i==len(lines):
+                context.append(line.strip())
+                break
 
             if len(line.lstrip()) < len(line)/2.0 or \
                 len(speakermodeinbraces.sub('',line).strip().split())<=3:
@@ -152,7 +152,7 @@ class script_parser:
                     line=lines[i]
 
                 if len(utterance_list) == 0:
-                    context.append(lines[i-1])
+                    context.append(lines[i-1].strip())
                 else:
                     speaker=speaker.replace(':', '')
                     speaker=speaker.replace('O.S.', '')
@@ -161,14 +161,18 @@ class script_parser:
                     speaker=speakermode.sub('', speaker).strip()
                     utterance=utterancemodeinbraces.sub('',' '.join(utterance_list))
                     if speaker != '' and len(speaker.split())<=2:
-                        utterances.append('{0} => {1}'.\
+                        parsed_lines.append('##### {0}'.format(' '.join(context)))
+                        parsed_lines.append('{0} => {1}'.\
                             format(speaker, utterance))
-                    context=[]
+                        context=[]
 
             else:
-                context.append(line) 
+                context.append(line.strip()) 
 
-        return '\n'.join(utterances)
+        if len(context) != 0:
+            parsed_lines.append('##### {0}'.format(' '.join(context)))
+
+        return '\n'.join(parsed_lines)
 
     def process(self):
         in_ptr=open(self.scriptfile)
@@ -185,7 +189,7 @@ class script_parser:
 if __name__ == '__main__':
     html_dir = '../Data/scripts_html'
     text_dir = '../Data/scripts_txt'
-    out_dir = '../Data/utterances_with_charnames'
+    out_dir = '../Data/parsed_scripts'
 
     if len(sys.argv)>1:
         files=sys.argv[1:]
