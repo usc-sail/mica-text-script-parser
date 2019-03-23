@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 import sys
+from parse_scripts import *
 from fetch_scripts import *
 from extract_scripts import *
-from parse_scripts import *
 from distutils.util import strtobool
 
 html_dir = '../Data/scripts_html'

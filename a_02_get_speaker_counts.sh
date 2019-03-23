@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+ 
 cd ../Data
 
 for i in `find ../Data/utterances_with_charnames/ -type f -exec basename {} \;`; do
