@@ -288,7 +288,8 @@ def assemble_lines(text_lines):
 def annotate(screenplay):
 	play = screenplay.replace('\t', '        ')
 
-	text_lines = play.split('\n\n')
+	# text_lines = play.split('\n\n')
+	text_lines = play.split("\n")
 	# text_lines = [line for line in play.split("\n") if line.strip()]
 
 	line_tups = assemble_lines(text_lines)

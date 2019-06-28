@@ -3,7 +3,7 @@ import json
 import numpy as np
 from pprint import pprint
 from shutil import copyfile
-from stats import get_stats_report
+from utils.stats import get_stats_report
 from count_common_files import count_common_files
 
 mica_parser_output_dir = "../mica-scripts/parsed_scripts_with_context/"
@@ -78,13 +78,6 @@ def compare_mica_screenpy_outputs():
     print(f"#files for which parsed output is in both {mica_parser_output_dir} and {scpy_parser_output_dir} = {len(common_parser_files_info)}")
     print()
 
-    indices = np.arange(len(common_parser_files_info))
-    # random_indices = np.random.choice(indices, size=5, replace=False)
-    # for i in random_indices:
-    #     scpy_filepath, mica_filepaths = common_parser_files_info[i]
-    #     write_utterances_and_scripts(scpy_filepath, mica_filepaths[0])
-    # print()
-
     diff_n_utterances = []
     for scpy_filepaths, mica_filepaths in common_parser_files_info:
         scpy_parser_output = json.load(open(scpy_filepaths[0]))
@@ -93,16 +86,16 @@ def compare_mica_screenpy_outputs():
         mica_parser_output = open(mica_filepaths[0]).read()
         n_mica_utterances = sum(1 for line in mica_parser_output.split("\n") if not line.startswith("###"))
 
-        diff_n_utterances.append(np.abs(n_scpy_utterances - n_mica_utterances))
-    print(get_stats_report("DIFFERENCE in #UTTERANCES PARSED BETN screenpy AND mica", diff_n_utterances, bins = np.arange(start=0, stop=2000, step=100)))
+        diff_n_utterances.append(n_mica_utterances - n_scpy_utterances)
+    print(get_stats_report("DIFFERENCE in #UTTERANCES PARSED mica - screenpy", diff_n_utterances, bins = "sturges"))
 
-    diff_n_utterances = np.array(diff_n_utterances)
-    indices = np.argsort(-diff_n_utterances)
-    selected_indices = indices[:5]
-    for i in selected_indices:
-        scpy_filepaths, mica_filepaths = common_parser_files_info[i]
-        write_utterances_and_scripts(scpy_filepaths[0], mica_filepaths[0])
-    print()
+    # diff_n_utterances = np.array(diff_n_utterances)
+    # indices = np.argsort(-diff_n_utterances)
+    # selected_indices = indices[:5]
+    # for i in selected_indices:
+    #     scpy_filepaths, mica_filepaths = common_parser_files_info[i]
+    #     write_utterances_and_scripts(scpy_filepaths[0], mica_filepaths[0])
+    # print()
 
 if __name__ == "__main__":
     compare_mica_screenpy_outputs()
