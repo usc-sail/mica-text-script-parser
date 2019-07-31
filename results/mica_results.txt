@@ -1,0 +1,642 @@
+44_inch_chest
+	ANNOTATION  =   DDDDDDDDDDDDDDDDDDDD NNN CDDDDEET !!CDEDD T S NN CDDDDDDDDDDDDDDDDDDDDDDDEDDDDDDDDDDDDDDDDDDDDD! !!C
+	MICA        =                                                    CDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD    
+
+	ANNOTATION  =   DDDDDEEEEDEEDEEEDDDDDEEDDDDD T!   S N CDD NNNNN NN CED NN CEED CEED SSSS CEED CD T S NN     !!  CDDD
+	MICA        =                                         CDD          CDD    CDDD CDDD      CDDD CD                CDDD
+
+	ANNOTATION  =    NNNN CDDDDD NNNNN CDDDDDDDDD NN CDDDD CD NN CDDDDDD   !!  CED CDD CD NN CDDD NN CDDDDDD NN CDDDDD T
+	MICA        =         CDDDDD       CDDDDDDDDD    CDDDD CD                      CDD CD                               
+
+	ANNOTATION  =    S NN CEDD
+	MICA        =         CDDD
+
+(D) : Prec = 0.886, Rec = 0.545, F1 = 0.675
+(C) : Prec = 1.000, Rec = 0.652, F1 = 0.789
+
+american_psycho
+	ANNOTATION  =   CD CDD CD N S NNNNNN CDDD NNNN NN CD NN CD N CEDD CEED N CD E CD NNNNNNNNN NN CED N S NNN CDDDDDDD N
+	MICA        =   CD CDD CD            CDDD         CD    CD   CDDD CDDD   CD   CD              CDD         CDDDDDDD  
+
+	ANNOTATION  =    CDD CD CD CD CEDDDDD CDDDD CD CDDDDDDDDD N CDDDDDD NN CD S N CD CD CD CD CD CD CD CD NNNNN CD N CD 
+	MICA        =    CDD CD CD CD CDDDDDD CDDDD CD CDDDDDDDDD   CDDDDDD    CD     CD CD CD CD CD CD CD CD       CD   CD 
+
+	ANNOTATION  =   CD CD CD S NNNNNN CD NN S NNNN CDD NN CD NN CDD N CEDDEDD N CDD N CDEDDDD N N NN CDD N CD NNN CD N C
+	MICA        =   CD CD CD          CD           CDD    CD    CDD   CDDDDDD   CDD   CDDDDDD        CDD   CD     CD   C
+
+	ANNOTATION  =   D CDE N CD CDDD CDD NNNN CDCD CD CDDD CDD CD
+	MICA        =   D CDD   CD CDDD CDD  CDD CDDD CD CDDD CDD CD
+
+(D) : Prec = 0.897, Rec = 1.000, F1 = 0.945
+(C) : Prec = 0.982, Rec = 0.982, F1 = 0.982
+
+basic_instinct
+	ANNOTATION  =   S NNN S N N S NNNN S N NN NN S NN CDD !EED CDDD CDD CEDDD NN CDDDDD NN CD CDDD CEDD CEDD N CDDD CEDD
+	MICA        =                                     CDD CDDD CDDD CDD CDDDD    CDDDDD    CD CDDD CDDD CDDD        CDDD
+
+	ANNOTATION  =    N S NNNN CDDDD N CD NN NN CEDDD N CEDDDDDDDDDDDD S NN CDDD CD CDDEDD N CDD CDD CD CDD N CEDDDDD N C
+	MICA        =             CDDDD   CD       CDDDD   CDDDDDDDDDDDDD      CDDD CD CDDDDD   CDD CDD CD CDD   CDDDDDD   C
+
+	ANNOTATION  =   ED N S NNN S NN CDED NN CEDDDDDEDDDD CED CEDD CEED CEED NN CED CEED S N N N CEEDD CEDD CEDD CEDDEDDD
+	MICA        =   DD              CDDD    CDDDDDDDDDDD CDD CDDD CDDD CDDD    CDD CDDD         CDDDD CDDD CDDD CDDDDDDD
+
+	ANNOTATION  =   DDDDD N CDD CED S NN CEDD N CEDD N 
+	MICA        =   DDDDD   CDD CDD      CDDD   CDDD   
+
+(D) : Prec = 0.771, Rec = 0.973, F1 = 0.861
+(C) : Prec = 0.975, Rec = 0.975, F1 = 0.975
+
+bodyguard
+	ANNOTATION  =   CDNCDCDCDDDCD ! DCDDCDCDCDD CDCDCDNNCDCDDCDCDDCEEDDDNCD ! CDNCD NCDEDDD NNCDNNCDDNCD SNNNNNCDCDNCED 
+	MICA        =   CDDDDDDDDDDDD    CDDDDDDDDD CDDDDDDDDDDDDDDDDDDDDDDDDDD   CDDDD CDDDDDD   CDDDDDDDDD                
+
+	ANNOTATION  =   ! CEEDDN CEDNNNN CDNN SNN SNNNNCEDNNNNCEDDNCD ! CDCDCDNNNCD NCDDNCDNCDDNNCDNNCDNNNNCDDNN ! CDDNNNNNC
+	MICA        =     CDDDDD CDDDDDD CDDD          CDDDDDDDDDDDDD   CDDDDDDDDDD CDDDDDDDDDDDDDDDDDDDDDDDDDDD   CDDDDDDDD
+
+	ANNOTATION  =   DNNNNNNNN SNNN SNCDNCDCDNNNNNTSNN ! NNCDD NCDCDDD CDNCDDNCDDCDCDNNCDCDNCDCDD
+	MICA        =   DDDDDDDDD        CDDDDDDDDDDDD DD    CDDD  CDDDDD CDDDDDDDDDDDDDDDDDDDDDDDDD
+
+(D) : Prec = 0.418, Rec = 0.953, F1 = 0.581
+(C) : Prec = 0.824, Rec = 0.233, F1 = 0.364
+
+bounty_hunter_the
+	ANNOTATION  =   N CD CED !  NNN  S NN  S NN CDD CD  S NNN CD CD NNN NN N CD N CD !  NNN NN NN NNN  S NNN N  S NN NN 
+	MICA        =     CD CDD                    CDD CD        CD CD          CD   CD                                    
+
+	ANNOTATION  =   CD N CD CDDDD NN N !  S NN  S N CD CD NN  S N  S N CD CD  S NNN N  S NNN N !  CDDD  S N NNN  S NN NN
+	MICA        =   CD   CD CDDDD                   CD CD              CD CD                      CDDD                  
+
+	ANNOTATION  =    CD  N N CDD CD CDDD CED CDDD NN !  CD  S NNNN CD  S N  S NN CDDD CDD NNNN N CEDDDD NN CD !  CDD NNN
+	MICA        =    CD      CDD CD CDDD CDD CDDD       CD         CD            CDDD CDD        CDDDDD    CD    CDD    
+
+	ANNOTATION  =    NNN N CDDDDDDD  S N NN NN NN N CDDD N N CD CDD !  N CN CED NN CD CD CD CDDDDD CD CD CED NN CDDD
+	MICA        =          CDDDDDDD                 CDDD     CD CDD      CD CDD    CD CD CD CDDDDD CD CD CDD    CDDD
+
+(D) : Prec = 0.926, Rec = 1.000, F1 = 0.962
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+broken_embraces
+	ANNOTATION  =      NNNNN    T         S     NNN     !  NNNNNNN    NNNNNNNNN         S     NNNNNNNNN         !  NNNNN
+	MICA        =        CDD                                              CDDDD                                         
+
+	ANNOTATION  =   NNT         S     NNNNNNNNN     CD CD CD CD C     !  D CDDD    N     CD CDD CDD CDD    NNNNNN       
+	MICA        =                        CDDDDD     CD CD CD CD            CDDD          CD CDD CDD CDD        CD       
+
+	ANNOTATION  =     S  S         !  NNNNNNN     CDDD    N         S     NN     CD CD    NNNNN     !   CD CD    NNNNNNN
+	MICA        =                                 CDDD                           CD CD                  CD CD         CD
+
+	ANNOTATION  =   N         S     NNNNNNN     CD CD C     !  D    N     CDDD CD CD CDDD CD CD CD CD CD CD CDDE !   CDD
+	MICA        =   D                 CDDDD     CD CD                     CDDD CD CD CDDD CD CD CD CD CD CD CDDD     CDD
+
+	ANNOTATION  =    CD CD    T         S S     NNNNNN     CD CDD CD C         !  NNN CDD CDD CD CD CDD CD CDD CDDDD    
+	MICA        =    CD CD                                 CD CDD CD                  CDD CDD CD CD CDD CD CDD CDDDD    
+
+	ANNOTATION  =   N     CD     !   S     NNNNNNNNNNNNNNNNNNNNN
+	MICA        =         CD                                    
+
+(D) : Prec = 0.768, Rec = 0.969, F1 = 0.857
+(C) : Prec = 0.875, Rec = 0.933, F1 = 0.903
+
+burn_after_reading
+	ANNOTATION  =    N N NN NN NNNNN NN !  CD CD CD CD CDD CDDD CEDD CDDD CDD CDDDDDDDD N CD CDDD !  CDD N N N CD CD CD 
+	MICA        =                          CD CD CD CD CDD CDDD CDDD CDDD CDD CDDDDDDDD   CD CDDD    CDD       CD CD CD 
+
+	ANNOTATION  =   N N  S NN CD N CD N NN CD CD CD CD !  CD N CD  S NN CD N CD N  S N CD  S NNN  S CDD N CD N !  CD CD 
+	MICA        =             CD   CD      CD CD CD CD    CD   CD       CD   CD        CD           CDD   CD      CD CD 
+
+	ANNOTATION  =   CD CDD CD CD CD NN CD CD  S S N  S NNNN CDD CD !  S NN NNN CDDDD CD CD CDDDD NN N CD NN N N CD NNN C
+	MICA        =   CD CDD CD CD CD    CD CD                CDD CD             CDDDD CD CD CDDDD      CD        CD     C
+
+	ANNOTATION  =   D N !  CD CD CD CD NN N N CD CD CD N CD N CD N N CD CD N N CD !  S NN N CD CD  S NN  S NNN CDD N N 
+	MICA        =   D      CD CD CD CD        CD CD CD   CD   CD     CD CD     CD           CD CD                      
+
+(D) : Prec = 0.989, Rec = 0.978, F1 = 0.983
+(C) : Prec = 1.000, Rec = 0.984, F1 = 0.992
+
+candle_to_water
+	ANNOTATION  =    N S N NNNNN N N NN S NNN N NN N    !S NN S NN N N CD CD CD N N CD CDDDDD CDDD CDD CD NN !CD CD N N 
+	MICA        =                                                      CD CD CD     CD CDDDDD CDDD CDD CD     CD CD     
+
+	ANNOTATION  =   CDD N N N S NN S NN N N S NNNN NNN NN    !S NN N S NNN N N S NNN N S S N CDDD N T S N N T T   !S S N
+	MICA        =   CDD                                                                      CDDD                       
+
+	ANNOTATION  =    N N T S NNN CEDDDD N N CDDDDDDDDD N N S N    !S NNN S NNNN N N S NNN N CDD N CDDD N CDD N CD N CD !
+	MICA        =                CDDDDD     CDDDDDDDDD                                      CDD   CDDD   CDD   CD   CD  
+
+	ANNOTATION  =   N N CD N N CDDD N N N N N CD N CEDD S N CEDDD CD N  !S N N N NN N S N N T    !! ! ! ! ! T S NN NN CD
+	MICA        =       CD     CDDD           CD   CDDD     CDDDD CD                                                  CD
+
+	ANNOTATION  =    NN N NN N 
+	MICA        =              
+
+(D) : Prec = 0.949, Rec = 1.000, F1 = 0.974
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+changeling
+	ANNOTATION  =    NNNN CDDDCDD CD CDDDDDD CD !  CD NN CD CD N CDDDDDD CDDD N CDDDDDDDCDD CD CD CD N !  S NNN CEDDD S 
+	MICA        =         CDDDDDD CD CDDDDDD CD    CD    CD CD   CDDDDDD CDDD   CDDDDDDDDDD CD CD CD                    
+
+	ANNOTATION  =   NN CEDDDD CD CEDD CDD CEDDED NN CEDD NN !  CDD N CDDD N CDED N S N S NNNNN CDDD CD CDDEDDD CD NN !  
+	MICA        =             CD      CDD           CDDD       CDD   CDDD   CDDD               CDDD CD CDDDDDD CD       
+
+	ANNOTATION  =   CDD CDD S NNN NN CDED NN CD CDD CDD SN CDDDDDED N S NN !  CD CD CD CD N CDDD CD S NN CDDDDDDDD NN CD
+	MICA        =   CDD CDD          CDDD    CD CDD CDD    CDDDDDDD           CD CD CD CD   CDDD CD      CDDDDDDDD    CD
+
+	ANNOTATION  =   DDDDDDD CD CD !  CD CD NN CDDEDD NN CD N CDDD 
+	MICA        =   DDDDDDD CD       CD       CDDDDD    CD   CDDD 
+
+(D) : Prec = 0.932, Rec = 0.887, F1 = 0.909
+(C) : Prec = 1.000, Rec = 0.843, F1 = 0.915
+
+custody
+	ANNOTATION  =   NN CDD T !   S NNN CD CD CD NNNNNN T S NN T S NNNNCD CD T S NN T !   S N T S NN T S NNNN CD N CD T S
+	MICA        =      CDD             CD CD CD                       CD CD                                  CD   CD    
+
+	ANNOTATION  =    NN T SNNN CD CED T !   S NNN T S NN T SN T S NN CD NNN CD NNT S N T S N CD !   CD CD NN CD ! TS NNN
+	MICA        =              CD CDD                                CD     CD               CD     CD CD    CD         
+
+	ANNOTATION  =    CD CD CD NN CDDN CN CD CD CD N !   CD CDD N CD CD CDD CD N CDDDD CDD CDDCD CD N CD CD T !   S N CDD
+	MICA        =    CD CD CD    CDDD CD CD CD CD       CD CDD   CD CD CDD CD   CDDDD CDD CDDDD CD   CD              CDD
+
+	ANNOTATION  =   D CD CD CDDDDD CDD CDDD CD CDDCD CDDD CD CDD !   CDDDDDDDDDDDDDDDD CDDDDDD T S NN
+	MICA        =   D CD CD CDDDDD CDD CDDD CD CDDDD CDDD CD CDD     CDDDDDDDDDDDDDDDD CDDDDDD       
+
+(D) : Prec = 0.948, Rec = 0.989, F1 = 0.968
+(C) : Prec = 1.000, Rec = 0.941, F1 = 0.970
+
+dry_white_season_a
+	ANNOTATION  =   NN NCEDN CDCEDDDD! ! !CEDCDDDDDD CDDDDDDDCD CDCDDCDDDCDDCDDD N CDDD CD ! ! !CDDDCD CDDDDD CDDCDDCDDD
+	MICA        =       CDDD CDDDDDDDD   CDDDDDDDDDD CDDDDDDDDD CDDDDDDDDDDDDDDD   CDDD CD     CDDDDDD CDDDDD CDDDDDDDDD
+
+	ANNOTATION  =   CDDDDDDCDDCDDD S NNN NN ! SNNNNN NNNNNCED CDCDCDDDDDDDDCDD CDDDDCDDDCEDDNN! ! !CDDDDDDDDD ECD CDCDCD
+	MICA        =   DDDDDDDDDDDDDD                            CDDDDDDDDDDDDDDD CDDDDDDDDDDDDDDD   CDDDDDDDDDD CDD CDDDDD
+
+	ANNOTATION  =   DDDDDCDNNCDDDDDDDDD CD NN! ! !CDDDDD CDN CDDN CDDDDCDDDCDDCDDDDDNNNCDD CDEEDDN ! SNNNNN
+	MICA        =   DDDDDDDDDDDDDDDDDDD CD       CDDDDDD CDD CDDD CDDDDDDDDDDDDDDDDDDDDDDD CDDDDDD         
+
+(D) : Prec = 0.737, Rec = 0.993, F1 = 0.846
+(C) : Prec = 0.762, Rec = 0.333, F1 = 0.464
+
+event_horizon
+	ANNOTATION  =   N N CD N N CD N NN T S NNN CDD CDDD CD CD CD CEDDD CD CD N CDDDDE CDDD CDD ! CDDDDD N CDDD CDD CEDD 
+	MICA        =       CD     CD              CDD CDDD CD CD CD CDDDD CD CD   CDDDDD CDDD CDD   CDDDDD   CDDD CDD CDDD 
+
+	ANNOTATION  =   CD N CDDD CD N NNN CD NN CDD CED N CDD N CDDDDDD N CD CDD N CDDDD CDDD CD CDDD CDD N S S CD CED CDDD
+	MICA        =   CD   CDDD CD       CD    CDD CDD   CDD   CDDDDDD   CD CDD   CDDDD CDDD CD CDDD CDD       CD CDD CDDD
+
+	ANNOTATION  =    CEDDD CD N CD CDDDDDDDDD N CD N S N CD CDD CDDD CDDD N CDD CDD CD N CDD CDD NN CDD CED CDDDD N T S 
+	MICA        =    CDDDD CD   CD CDDDDDDDDD   CD       CD CDD CDDD CDDD   CDD CDD CD   CDD CDD    CDD CDD CDDDD       
+
+	ANNOTATION  =   N S N S NN S NN S N NNN N CD NNN N CD N NN NN N S NN S NN NN
+	MICA        =                             CD       CD                       
+
+(D) : Prec = 0.943, Rec = 1.000, F1 = 0.971
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+extract
+	ANNOTATION  =        ! C EDNN CDNN CD CDD CD CDDDDDD C EDD CDDD CD CDN CDD         ! CD S NN S NNN S NNNN CDD CEDD C
+	MICA        =                 CDDD CD CDD CD CDDDDDD       CDDD CD CDD CDD           CD                   CDD CDDD C
+
+	ANNOTATION  =   DNN CDD CD S N         ! CDD EDD CDDD CDDDD CDDD CD CD CDD CDD C ED CDDDD D CDDD         ! CD CDDDDD
+	MICA        =   DDD CDD CD               CDD     CDDD CDDDD CDDD CD CD CDD CDD      CDDDD   CDDD           CD CDDDDD
+
+	ANNOTATION  =   D CD EDD CDDDD CD CD CD CDDDD CDDDDDDD CDDEDD         ! S NN CDD CD CDDDD CDDD C EDDDDDDDDDDDDD CDD 
+	MICA        =   D CD     CDDDD CD CD CD CDDDD CDDDDDDD CDDDDD                CDD CD CDDDD CDDD                  CDD 
+
+	ANNOTATION  =   CD CD CDD !         ! C ED CD CD C ED CDD CD !E EDDNN C ED S NN CD CD CDDD CDN         ! S NNNN
+	MICA        =   CD CD CDD                  CD CD      CDD CD CD CDDDD           CD CD CDDD CDD                 
+
+(D) : Prec = 0.910, Rec = 0.816, F1 = 0.860
+(C) : Prec = 0.962, Rec = 0.879, F1 = 0.919
+
+flight
+	ANNOTATION  =   NNN N  S NNNNN NNNN NN CDD CDD CDD N  S NN NN CDDDD! CDDD CDD CD CDDD CD N CDD CDDD N  N  S NNN N CD
+	MICA        =                          CDD CDD CDD            CDDDD  CDDD CDD CD CDDD CD   CDD CDDD               CD
+
+	ANNOTATION  =    NNN! CECD N CD NN N C!EDD CED NN CD N CDD CDDDD CD CDD NN! CED N NN CDD CDD CDD CDD N CED NN  S N N
+	MICA        =         CDDD   CD      CDDDD CDD    CD   CDD CDDDD CD CDD     CDD      CDD CDD CDD CDD   CDD          
+
+	ANNOTATION  =   N N CD NN CD N! CD  S NNNNNN NNN NN CD CDD CD N CD CD NN CD CNNN NNNN! S NNNNN N!N  S N NN CDD CD N 
+	MICA        =       CD    CD    CD                  CD CDD CD   CD CD    CD CDDD                           CDD CD   
+
+	ANNOTATION  =   CD CDDD CD N CD N CD NN! S NNNNN CDDDDD CD CDDDDDDD CDDD 
+	MICA        =   CD CDDD CD   CD   CD             CDDDDD CD CDDDDDDD CDDD 
+
+(D) : Prec = 0.897, Rec = 1.000, F1 = 0.946
+(C) : Prec = 1.000, Rec = 0.980, F1 = 0.990
+
+gamer
+	ANNOTATION  =   D CDD NN CDDDD CD   ! !!S NNN CDDDEDDD CD CD CDDDDD N CDDDD N CD S NN NNNN N CD  ! !!! NN CD CD NN C
+	MICA        =     CDD    CDDDD CD             CDDDDDDD CD CD CDDDDD   CDDDD   CD             CD           CD CD    C
+
+	ANNOTATION  =   D N CD NNN CD CD !! CDD CD CD N NN CDDDDD ! !!! N CD N CD CDDDD NN NNN N N T S NNN CD NNNNN NNNN NN 
+	MICA        =   D   CD     CD CD    CDD CD CD      CDDDDD         CD   CD CDDDD                    CD               
+
+	ANNOTATION  =   CD ! !!! NN CD NN CEDDDED CED N CD N CEDDDDDD CD CDDD CEDD    ! !!! CDDDD CDDDD CED !!! CDD CDDEED N
+	MICA        =   CD          CD    CDDDDDD CDD   CD   CDDDDDDD CD CDDD CDDD          CDDDD CDDDD CDD CDD CDD CDDDDD  
+
+	ANNOTATION  =    CDDDD CDD NNN N T !!   S NN S NN CD N CD CDED N S NNNN NN
+	MICA        =    CDDDD CDD                        CD   CD CDDD            
+
+(D) : Prec = 0.885, Rec = 0.989, F1 = 0.934
+(C) : Prec = 0.977, Rec = 1.000, F1 = 0.989
+
+grosse_pointe_blank
+	ANNOTATION  =    S N CDD CD CD S N NNNN S NNNNNN CD NN S NNNNNNNN S NNNNNNNNN S NN S NNNN CDD CD CD CD N CDDDDDD CD 
+	MICA        =        CDD CD CD                   CD                                       CDD CD CD CD   CDDDDDD CD 
+
+	ANNOTATION  =   NN CDDD N CDDDDDDD N CD CD CD CD N CED NN CD NNN S NNNN S NNNNNNN N N N NNNN N N N N N N N N N NN N 
+	MICA        =      CDDD   CDDDDDDD   CD CD CD CD   CDD    CD                                                        
+
+	ANNOTATION  =   N NNNNNN S NNNNN N N S NN S NN S NNN S NNNNNNN S NN N N NN CD CD N CDD CD N CDD N S N CD CD CD N CD 
+	MICA        =                                                              CD CD   CDD CD   CDD       CD CD CD   CD 
+
+	ANNOTATION  =   N CD CD CDD CD N CD CD NN S N N NNN CD N NNNN NNNNNN N CD CD CD CD 
+	MICA        =     CD CD CDD CD   CD CD              CD                 CD CD CD CD 
+
+(D) : Prec = 0.982, Rec = 1.000, F1 = 0.991
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+i_am_number_four
+	ANNOTATION  =   ! S NN CDNNN CD CDNN CDNN CDDDNN CDDN CDD         !N CDN !DDDD T S NNN S NN CDD CDN CDNNNNNN CDDDD C
+	MICA        =          CDDDD CD CDDD CDDD CDDDDD CDDD CDD            CDD CDDDD              CDD CDD CDDDDDDD CDDDD C
+
+	ANNOTATION  =   D         !N CDDDDDN CDDNNNNNNN S NNNN CDDD CDD S N CDD CD         ! CDDDNN CD CDD T S NNNN CDDN CD 
+	MICA        =   D            CDDDDDD CDDDDDDDDD        CDDD CDD     CDD CD           CDDDDD CD CDD          CDDD CD 
+
+	ANNOTATION  =   CDDDD CD CDDDDNNNNN         ! S NNNN NNN CDDN CDDN NNNN CD EDN CDDN CD CDN CDD         !N CDDDDD EDN
+	MICA        =   CDDDD CD CDDDDDDDDD                  CDD CDDD CDDD CDDD CD     CDDD CD CDD CDD            CDDDDD    
+
+	ANNOTATION  =    CD CD CDD CDN !! CDDD CD CDDNN CD CDN         ! CDDNNN S NNN NNNNN CDDNNNN 
+	MICA        =    CD CD CDD CDD CD CDDD CD CDDDD CD CDD           CDDDDD       CDDDD CDDDDDD 
+
+(D) : Prec = 0.607, Rec = 0.978, F1 = 0.749
+(C) : Prec = 0.902, Rec = 1.000, F1 = 0.948
+
+kids
+	ANNOTATION  =     S N CD CD N CD CD CD CED CD  S N N CD N CD N N N N N N N N N N N CD N CD CED CD CD CD N CD CD  S N
+	MICA        =         CD CD   CD CD CD CDD CD        CD   CD                       CD   CD CDD CD CD CD   CD CD     
+
+	ANNOTATION  =    CD N  S N CD N N CD CD CD N N N N N N N N CED N N N N N N CD N N CED T  S N N N N N CD N CD CD CD N
+	MICA        =    CD        CD     CD CD CD                 CDD             CD     CDD                CD   CD CD CD  
+
+	ANNOTATION  =    CD CD CD CD CD CD N CD CD N CD N CD N CD CD CD CD CD CD CD CD CD N CD CD CD CD CD N CDED N CD N CD 
+	MICA        =    CD CD CD CD CD CD   CD CD   CD   CD   CD CD CD CD CD CD CD CD CD   CD CD CD CD CD   CDDD   CD   CD 
+
+	ANNOTATION  =   CD CD CD CD N N CD N CD CD N CD N CD N CD N CD N CD N  S N N CEDED N N CED N CD CD CD CD CD N CED N 
+	MICA        =   CD CD CD CD     CD   CD CD   CD   CD   CD   CD   CD          CDDDD     CDD   CD CD CD CD CD   CDD   
+
+	ANNOTATION  =   CD CD N CD CD CD
+	MICA        =   CD CD   CD CD CD
+
+(D) : Prec = 0.902, Rec = 1.000, F1 = 0.949
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+lord_of_the_rings_fellowship_of_the_ring_the
+	ANNOTATION  =   !!   ! !!CDD T CD NNN CD NN CDDDD  NN CDDD N CD NN N N CDD T CD  ! !!  TT CDD CDD N NNN CD NN CDD NN
+	MICA        =                  CD     CD    CDDDD     CDDD   CD        CDD   CD           CDD CDD       CD    CDD   
+
+	ANNOTATION  =   NNN CDDD NNN CDDD NN CDD ! !!  NNN CDDD NN T NNN CD NN CDD T CDD NN CDD NN CDD N CD !   N CDDD NNN C
+	MICA        =       CDDD     CDDD    CDD           CDDD          CD    CDD   CDD    CDD    CDD   CD       CDDD     C
+
+	ANNOTATION  =   DD CDED CDDDD T CD NN CDDDDD NN CDD T N !   N CDD CED NN CD CED N N CD N N N N N CDD T T S N NNNN ! 
+	MICA        =   DD CDDD CDDDD   CD    CDDDDD    CDD           CDD CDD    CD CDD     CD           CDD                
+
+	ANNOTATION  =   !! NNNNNN NNNNN T S NN N N N NN CD N CDDD NNN CD NN CDD T !   S N N CDD N N CD
+	MICA        =                                   CD   CDDD     CD    CDD             CDD     CD
+
+(D) : Prec = 0.963, Rec = 0.975, F1 = 0.969
+(C) : Prec = 1.000, Rec = 0.976, F1 = 0.988
+
+machete
+	ANNOTATION  =    !  S NNN  CD N CD  N NN NNNN N  S N NN CD N N N NN N NN CDDED NN  CD CDD S N NN T  S N CD CD CDD N 
+	MICA        =          CD  CD   CD                      CD               CDDDD     CD CDD               CD CD CDD   
+
+	ANNOTATION  =   N  S N  S NN CDD  S NNN CD CD CDDDEED CDD CD CDDEEDDDD N CDDD CD CDD NNN  CD NNNNNN  S N N NN  S NNN
+	MICA        =                CDD        CD CD CDDDDDD CDD CD CDDDDDDDD   CDDD CD CDD  CD  CD                        
+
+	ANNOTATION  =    CDDD NN CDDDD N N CDDDD NN  CD  N N CDD CD CD N CDD  ! N CD N  S N CDD N  S NN  S NN CDDDD CD CDDDD
+	MICA        =    CDDD    CDDDD     CDDDD     CD      CDD CD CD   CDD      CD        CDD               CDDDD CD CDDDD
+
+	ANNOTATION  =   DDD N NN N N  S NN N  S NN N  S NN  S NNN N N N CED  S NN CD  S NNN CD CD N CD N CDD CD CDD  CDD  S 
+	MICA        =   DDD                                             CDD       CD        CD CD   CD   CDD CD CDD  CDD    
+
+	ANNOTATION  =   N 
+	MICA        =     
+
+(D) : Prec = 0.911, Rec = 1.000, F1 = 0.953
+(C) : Prec = 0.955, Rec = 1.000, F1 = 0.977
+
+man_who_knew_too_much_the
+	ANNOTATION  =   NN CED CDD CD CD CDD CD CD N CD CD N   CEEDD N CD  S NNN CD NNN T  S NNNNN CDD NN CDDD NN CD CD CD !
+	MICA        =      CDD CDD CD CD CDD CD CD   CD CD     CDDDD   CD        CD                CDD    CDDD    CD CD CD  
+
+	ANNOTATION  =      NN CDD NN CD CDD N CD NN NNNNNNNN CD N CDD CD CD CDD N CDD !   CDDDD CD N CDDDDD CD CDDD N CD N C
+	MICA        =         CDD    CD CDD   CD             CD   CDD CD CD CDD   CDD     CDDDD CD   CDDDDD CD CDDD   CD   C
+
+	ANNOTATION  =   D CD NNN CDD  S NNN CDDD !   CDD NNN CDDDD CD CDD NN CD CDDD CD CDD CD CDD CDD CED N CDD !   NNN CD 
+	MICA        =   D CD     CDD        CDDD     CDD     CDDDD CD CDD    CD CDDD CD CDD CD CDD CDD CDD   CDD         CD 
+
+	ANNOTATION  =   N CD N CDD N CDDDDDDD N CD CD NN CDD N CDD CDD N CDD !   NN CD N CDD CD
+	MICA        =     CD   CDD   CDDDDDDD   CD CD    CDD   CDD CDD   CDD        CD   CDD CD
+
+(D) : Prec = 0.965, Rec = 1.000, F1 = 0.982
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+memento
+	ANNOTATION  =    CED CD N CD NNN S NNN N ! NNNNN !!!! ! NNN S NN CDEDDD N CDDDDDDDD S NN CDDD NN CDDDDDDD      !! S 
+	MICA        =    CDD CD   CD                     CDD             CDDDDD   CDDDDDDDD      CDDD    CDDDDDDD           
+
+	ANNOTATION  =   CDD S NN S N CDD CED N CD S NN S NNNNN CD N CD CD N  ! !! ! CDD CD CD CD NN N CD N CD CD CDD CD CDDD
+	MICA        =   CDD          CDD CDD   CD              CD   CD CD           CDD CD CD CD      CD   CD CD CDD CD CDDD
+
+	ANNOTATION  =    CD CEDD N   ! !! ! CDD CD N CDD CDD CD CD N CD CD NN N! ! D! ! ! ! NN!    !! ! NN! ! ! N! DDDDDDD! 
+	MICA        =    CD CDDD            CDD CD   CDD CDD CD CD   CD CD         CD                              CDDDDDDD 
+
+	ANNOTATION  =   ! ! DDDDDDD! S! ! DDDDD! !       ! !! ! DDDD!! NNN! DDDDD! NN! DD! NN! D! N!
+	MICA        =       CDDDDDDD      CDDDDD                CDDDD       CDDDDD     CDD          
+
+(D) : Prec = 0.869, Rec = 0.915, F1 = 0.891
+(C) : Prec = 0.810, Rec = 1.000, F1 = 0.895
+
+men_in_black_3
+	ANNOTATION  =         ! CD CDDDDN CDD CD NN CD NNNNNNN CDNN CDDNN CDD CDN         !N CDDNN CD CDDDDDD C ED D CDN CDD
+	MICA        =           CD CDDDDD CDD CD    CD         CDDD CDDDD CDD CDD            CDDDD CD CDDDDDD        CDD CDD
+
+	ANNOTATION  =   D CDDNNN C EDDDDD E D         !N N NNNNNNNNN S NNNNNNNNN CDDNN S NNNN         ! CDD C D CDN CE EDDDD
+	MICA        =   D CDDDDD                           CDDDDDDDD         CDD CDDDD                  CDD     CDD CD CDDDD
+
+	ANNOTATION  =   DN CD CDNNNNN CDNN CDDN         ! S NNN NNNNNNNNNNNN NNNNN CDNN S NNNN CD CD         !NN C EDDD CD C
+	MICA        =   DD CD CDDDDDD CDDD CDDD                                    CDDD        CD CD                    CD C
+
+	ANNOTATION  =   DD CD CD CDDDD CDD CD CDDN CDD CDN CDD         !NNNN CED CD CDEDDDNNN CDDNN CDD
+	MICA        =   DD CD CD CDDDD CDD CD CDDD CDD CDD CDD               CDD CD CDDDDDDDD CDDDD CDD
+
+(D) : Prec = 0.626, Rec = 0.865, F1 = 0.726
+(C) : Prec = 0.933, Rec = 0.913, F1 = 0.923
+
+mirrors
+	ANNOTATION  =    NN CD CD CD N CDDDDD CD CDDDE   ! !!CDDDDDDDD CD CDD CDD N CDDDDD N CDD N CDDD  S NN CDDDDDD    ! !
+	MICA        =       CD CD CD   CDDDDD CD CDDDD                 CD CDD CDD   CDDDDD   CDD   CDDD       CDDDDDD       
+
+	ANNOTATION  =   !  NN CDDDD  S NNN CDD CD CDD NNN CD C! NN CD CD CDD N CDD   ! !!  NN CDDEDD N CD N CDDDDDD CD NN NN
+	MICA        =         CDDDD        CDD CD CDD     CD       CD CD CDD   CDD            CDDDDD   CD   CDDDDDD CD      
+
+	ANNOTATION  =   N N NN T  S N NN N N !    ! NN N  ! NNN NN N  S N NN  S N N N N NNN N N  !  !  ! !    ! NNN NN NN N 
+	MICA        =                                                                                                       
+
+	ANNOTATION  =   NNNN N N N NNN NN NN N NNN NNN N NNNN NN !    !  !  !  !  !  !  !  !  !  !  !  !  !  S NNN N N CD NN
+	MICA        =                                                                                                  CD   
+
+	ANNOTATION  =     ! !!  NN NNNN NN
+	MICA        =                     
+
+(D) : Prec = 0.969, Rec = 0.886, F1 = 0.925
+(C) : Prec = 1.000, Rec = 0.931, F1 = 0.964
+
+nine
+	ANNOTATION  =     S NNNN CD N CD CED CDDEDDD!! CDDD CED CD CD CEDDD CD CEDDD NN CEED  S NNNN CD CDDD!    S NNN NNN N
+	MICA        =            CD   CD CDD CDDDDDDDD CDDD CDD CD CD CDDDD CD CDDDD    CDDD         CD CDDDD               
+
+	ANNOTATION  =   NNNN CDD CDD CD CD CD NN CDD CED CDDD NN!    S NNNN NNN N CD CDEDDDD  S N CDD NN CD N CD CD CDDDDD N
+	MICA        =        CDD CDD CD CD CD    CDD CDD CDDD                     CD CDDDDDD      CDD    CD   CD CD CDDDDD  
+
+	ANNOTATION  =   !   N  S NNNNNNNN NNN N CDD N CDD CD CD CD CD CED CD CD NN NN!  NN CDDDD NN CDDD N CED CEDD CEDDDDED
+	MICA        =                           CDD   CDD CD CD CD CD CDD CD CD            CDDDD    CDDD   CDD CDDD CDDDDDDD
+
+	ANNOTATION  =   DEED CD CD CED CD CD!   NN CED CD CED  S NNNNNNNN  S NNN
+	MICA        =   DDDD CD CD CDD CD CDD      CDD CD CDD                   
+
+(D) : Prec = 0.798, Rec = 1.000, F1 = 0.888
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+pandorum
+	ANNOTATION  =   C! !         ! !NNN CDNNNNNNN CDNNNN CDN CD CDNN C D C DNNNN !         ! ! CD T S NNNN CDDDDNNN CD C
+	MICA        =   CD             CDDD CDDDDDDDD CDDDDD CDD CD CDDD                           CD          CDDDDDDD CD C
+
+	ANNOTATION  =   DDDNN CDDD CD CDD CD CDDDD !         ! !N CDDNN CDD CDDDDDNNN CDN CD CDD CD CD CDD ED T         ! S 
+	MICA        =   DDDDD CDDD CD CDD CD CDDDD             CD CDDDD CDD CDDDDDDDD CDD CD CDD CD CD CDD                  
+
+	ANNOTATION  =   NNNN CDDD ENNNN CD CDDNN CDN CDDNNN CDDD EDDN !         ! ! CDDDNNNN CDDD CD CDD CDD CD CD CD CDDDDD
+	MICA        =        CDDD       CD CDDDD CDD CDDDDD CDDD                    CDDDDDDD CDDD CD CDD CDD CD CD CD CDDDDD
+
+	ANNOTATION  =   DD CDDD CDD !         ! S NNN NNNN CD CD CDDD CD CDDDDDDNN CD CD CDD CD ! !         ! ! CDDD
+	MICA        =   DD CDDD CDD                   CDDD CD CD CDDD CD CDDDDDDDD CD CD CDD CD                 CDDD
+
+(D) : Prec = 0.690, Rec = 0.952, F1 = 0.800
+(C) : Prec = 0.944, Rec = 0.962, F1 = 0.953
+
+petulia
+	ANNOTATION  =   CD CDD CDD         ! S N CDDDDD CED CEDN CDNN   CDD CDNNNN CD CDN CDN   CDNN         ! ! CDD CDDDD C
+	MICA        =          CDD                      CDD CDDD CDDD   CDD CDDDDD CD CDD CDD   CDDD             CDD CDDDD C
+
+	ANNOTATION  =   D CD CD CDDD CED CDEDNNNN CDDD CD CDDDDD         ! ! CD CDN CD CD C ED CED CDDD CDD CD CDDD CDDNN S 
+	MICA        =   D CD CD CDDD CDD CDDDDDDD CDDD CD CDDDDD             CD CDD CD CD      CDD CDDD CDD CD CDDD CDDDD   
+
+	ANNOTATION  =   NNN         !!NNNNNNNN CDNN CD CD CDD  N CD CDDN C EDNNNN S NN !         ! CDEDN S CDDNNNN CDDDNN C 
+	MICA        =                          CDDD CD CD CDD    CD CDDD                           CDDDD   CDDDDDD CDDDDD   
+
+	ANNOTATION  =   EDNNNNNN CD CD CD S NNNNNNN         !! CD CD CD CD CD CD CDDDN !N CED CD CD CD S NNNNNNN
+	MICA        =            CD CD CD                      CD CD CD CD CD CD CDDDD    CDD CD CD CD          
+
+(D) : Prec = 0.697, Rec = 0.883, F1 = 0.779
+(C) : Prec = 1.000, Rec = 0.900, F1 = 0.947
+
+shawshank_redemption_the
+	ANNOTATION  =   N CD CD CD CD NN CDD S NN CDDD NNN CDDDDEDD S NN S N CD NNNNNNN S NNN !  NN S NNN CD NNN CDD NNN NN 
+	MICA        =     CD CD CD CD    CDD      CDDD     CDDDDDDD          CD                           CD     CDD        
+
+	ANNOTATION  =   CDD CD CD N CD ! NNN CD NNNN CDD  CDD CEDDEDDDD CD CDD CD NN CDDD NN CDD N CDEDD NN CD N CDD N CDDD 
+	MICA        =   CDD CD CD   CD       CD      CDD  CDD CDDDDDDDD CD CDD CD    CDDD    CDD   CDDDD    CD   CDD   CDDD 
+
+	ANNOTATION  =   S NNN CD S NNN CD CD CD CD CDD S NNNN CD N CD CD CDDD S NN CDDDDDDDDDDD N CDD CD CDD CDD CD CDD CD N
+	MICA        =         CD       CD CD CD CD CDD        CD   CD CD CDDD      CDDDDDDDDDDD   CDD CD CDD CDD CD CDD CD  
+
+	ANNOTATION  =   N CD NN CDDD N CDD CD NNN CDD CDDD CDD CD CDDDEDD
+	MICA        =     CD    CDDD   CDD CD     CDD CDDD CDD CD CDDDDDD
+
+(D) : Prec = 0.956, Rec = 1.000, F1 = 0.977
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+spartan
+	ANNOTATION  =   CEEEEDDDEEEDEEDDDDE  CEED CEEEDDE !  CDEDEDEEDEE  NNN CEDDDDDDD NN CDDEDDDD CDD CEDDDD CD !  CD CD C
+	MICA        =   CDDDDDDDDDDDDDDDDDD  CDDD CDDDDDD    CDDDDDDDDDD      CDDDDDDDD    CDDDDDDD CDD CDDDDD CD    CD CD C
+
+	ANNOTATION  =   DDEEEEEEDDDDD CD CDDED CD NN CDD N S NNNN NN NN !  NN N S NNN NN CD NNN NN CEED CD NN CDEEDDD N CD C
+	MICA        =   DDDDDDDDDDDDD CD CDDDD CD    CDD                                 CD        CDDD CD    CDDDDDD   CD C
+
+	ANNOTATION  =   DD SN !  S NN CD NNN S N NN S NNNN CED CEEED CDEEDDDD N NN NNNN !  CD N CDDD CD N CD CDED N CD CDEDD
+	MICA        =   DD            CD                   CDD CDDDD CDDDDDDD              CD   CDDD CD   CD CDDD   CD CDDDD
+
+	ANNOTATION  =   ED CD CDEDEDEDEEEEEDEE !  CD N CDE
+	MICA        =   DD CD CDDDDDDDDDDDDDDD    CD   CDD
+
+(D) : Prec = 0.616, Rec = 1.000, F1 = 0.763
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+star_trek_01_the_motion_picture
+	ANNOTATION  =    CD NN CDDDD CD N CDDD CDD NNN CEDDED CD NN ! S NNNNNN SS NNNNNN S NN NNNNN CD CD NNN S N S NNN CD N
+	MICA        =    CD          CD   CDDD CDD     CDDDDD CD                                    CD CD               CD  
+
+	ANNOTATION  =   NN CD ! NNNNNN CDDD NNNNNNN CEDD NN CDD CEDD CEEDDDD N NNN CD CDD NNNNN CD NNNNNN CDDD NNNN CD NNN C
+	MICA        =      CD          CDDD         CDDD    CDD CDDD CDDDDDD       CD CDD       CD        CDDD      CD     C
+
+	ANNOTATION  =   DD S N CEDDD S DDDDDD CEDDD S NNN CEDDD ! N  CD NNN CED N CED N CDDD S NNNNN CD CD N CDDD CDED NNN C
+	MICA        =   DD     CDDDD          CDDDD       CDDDD      CD     CDD   CDD                CD CD   CDDD CDDD     C
+
+	ANNOTATION  =   DDDDDD CDDDDD! NNN CDD CDD CDD CDDD
+	MICA        =   DDDDDD CDDDDDD     CDD CDD CDD CDDD
+
+(D) : Prec = 0.856, Rec = 0.856, F1 = 0.856
+(C) : Prec = 1.000, Rec = 0.949, F1 = 0.974
+
+strange_days
+	ANNOTATION  =   CD CDDD CD CDDD CDDD CD CDDDDDDDD NNN N T S NNN NNNN CDD CDDEED N CEEDD NNNN CEED CD CDDDDD NNN NNNN
+	MICA        =   CD CDDD CD CDDD CDDD CD CDDDDDDDD                    CDD CDDDDD   CDDDD      CDDD CD CDDDDD         
+
+	ANNOTATION  =    CDD CDED CDDD CDDD CDD CD CDDD CD CDDDDDDDDDDDDD NN CD CDD CDDD CDDD CD CEDDDDD CD CD CD CDDDDDDD C
+	MICA        =    CDD CDDD CDDD CDDD CDD CD CDDD CD CDDDDDDDDDDDDD    CD CDD CDDD CDDD CD CDDDDDD CD CD CD CDDDDDDD C
+
+	ANNOTATION  =   DDD NN CDDDDD CDDDDDDDD CDD CD CD CED CDDDDDD T S NNNN  S NNN NNNNNNNN NN N NN NNNN NNNNNN CDD NN CD
+	MICA        =   DDD    CDDDDD CDDDDDDDD CDD CD CD CDD CDDDDDD                                              CDD    CD
+
+	ANNOTATION  =    CDD CDD NN CDDD CD CD 
+	MICA        =    CDD CDD    CDDD CD CD 
+
+(D) : Prec = 0.934, Rec = 1.000, F1 = 0.966
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+stuntman_the
+	ANNOTATION  =   CDD NNNNNNN CEEDD !  CDDDDD CD CDD CDD CDDD CD ! N CEDD CEDD N CDD NN !  CEDED CEEDD N CEDDDDD CEDD 
+	MICA        =   CDD         CDDDD    CDDDDD CD CDD CDD CDDD CD     CDDD CDDD   CDD       CDDDD CDDDD   CDDDDDD CDDD 
+
+	ANNOTATION  =   ! N CD CDDDDDDDDD !  CEDDDDDEEDDDD NN CDDD CEDD CDDD S N CEDD CED! NN C !  DDDEDDDDEDDD N CED CD NNN
+	MICA        =       CD CDDDDDDDDD    CDDDDDDDDDDDD    CDDD CDDD CDDD     CDDD CDDD                        CDD CD    
+
+	ANNOTATION  =   N CD CDD N S NNN CED !  CEDEDD NN ! NNNNN CEDEDDD ! N CDDDDDE CD CD CDDD NN !  ! N CED NNN CD CEDD N
+	MICA        =     CD CDD         CDD    CDDDDD            CDDDDDD     CDDDDDD CD CD CDDD           CDD     CD CDDD  
+
+	ANNOTATION  =    CDD NNNNN CEDDDD N CDDDD CDD !   CDDD
+	MICA        =    CDD       CDDDDD   CDDDD CDD     CDDD
+
+(D) : Prec = 0.799, Rec = 0.915, F1 = 0.853
+(C) : Prec = 1.000, Rec = 0.977, F1 = 0.988
+
+suspect_zero
+	ANNOTATION  =    NN!SNNN NNN !  S NNN N S NNN NN N NN S NN NN N S NNN CD CD CDD CDD !  CDD N S NN N S N NNN S NNN NN
+	MICA        =                                                         CD CD CDD CDD    CDD                          
+
+	ANNOTATION  =    N NN NNN S NN T S NN !  NNN NNNN NNN CDD S NN CD NNN N NNN N CD CED N T S NN !  NN CD N CD CD CD CD
+	MICA        =                                         CDD      CD             CD CDD                CD   CD CD CD CD
+
+	ANNOTATION  =    NN CDEDD CD CD CD CDED N NN CDD !  NN CD CD N NNN NN N NNN NN S NNN NNN NNN NNN NN S NN !  S N NNN 
+	MICA        =       CDDDD CD CD CD CDDD      CDD       CD CD                                                        
+
+	ANNOTATION  =   NN ! N CED CDD CD CD NNN CDD CDD NN NN NNN !  S NNN S NNN T N S NN CD NNN N S NNN N 
+	MICA        =          CDD CDD CD CD     CDD CDD                                   CD               
+
+(D) : Prec = 0.909, Rec = 1.000, F1 = 0.952
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+true_romance
+	ANNOTATION  =    CDDDDDDD CD CDDDD CD CDD CD CDD CD N CDDDDDD N N N N CDDDDDDDDDD N CD CD N CD N CDED CED CDDD N CD 
+	MICA        =    CDDDDDDD CD CDDDD CD CDD CD CDD CD   CDDDDDD         CDDDDDDDDDD   CD CD   CD   CDDD CDD CDDD   CD 
+
+	ANNOTATION  =   CDDDDDDDDDDDD N N CDDDDD N N CD N  S N N N CDDD CD N CD  S N  S N CDDDDDDDDDDD CD CD CD CD CD CDD CD
+	MICA        =   CDDDDDDDDDDDD     CDDDDD     CD            CDDD CD   CD           CDDDDDDDDDDD CD CD CD CD CD CDD CD
+
+	ANNOTATION  =    CDDDD CD CD N CD CD CD CED CD N CD CD N CD CDED N CEDED N CD  S N N  S N N CD CD CD CD  S N CD  S N
+	MICA        =    CDDDD CD CD   CD CD CD CDD CD   CD CD   CD CDDD   CDDDD   CD               CD    CD         CD     
+
+	ANNOTATION  =    N N N CD CD CD CED CEDD N N N CDD N CD CD CDDDDDD CD CD CD CDDD N 
+	MICA        =          CD CD CD CDD CDDD       CDD   CD CD CDDDDDD CD CD CD CDDD   
+
+(D) : Prec = 0.942, Rec = 0.985, F1 = 0.963
+(C) : Prec = 1.000, Rec = 0.968, F1 = 0.984
+
+up
+	ANNOTATION  =     CD   CDD  NN   CDD CD CD  N CD  N CD  N CD   !     CD   CDD  N   S   NN   CD   S NNN  NN   CDDDD C
+	MICA        =     CD   CDD       CDD CD CD    CD    CD    CD         CD   CDD               CD               CDDDD C
+
+	ANNOTATION  =   D CDDDDN   CDEDDDNN   !     CDD   CDDD  NN   CDEDDNN CDDDD  N CED   CDDED   CEDN   CDN   CDD   !    
+	MICA        =   D CDDDDD   CDDDDDDD         CDD   CDDD       CDDDDDD CDDDD    CDD   CDDDD   CDDD   CDD   CDD        
+
+	ANNOTATION  =      S   NN   CDDDDNN CDDDNNN   CD CDNN   CD  NN CD  N CDDDD  NN   !     CDD   CDD   CDD  N CD   CDDN 
+	MICA        =               CDDDDDD CDDDDDD   CD CDDD   CD     CD    CDDDD             CDD   CDD   CDD    CD   CDDD 
+
+	ANNOTATION  =     CD C CDDDD CD  N CDDDNN  NN   CDDD   !   !CDDDDDN   CDDDDD  N   CD   CD   CDD  N CD   CD  N CD   C
+	MICA        =     CD         CD    CDDDDD       CDDD        CDDDDDD   CDDDDD      CD   CD   CDD    CD   CD    CD   C
+
+	ANNOTATION  =   DD  N   CD  N  N   !     CDDDDNN   CD  NN   CDD  N   CDDN  N N CDD  N CD   CDD
+	MICA        =   DD      CD               CDDDDDD   CD       CDD      CDDD      CDD    CD   CDD
+
+(D) : Prec = 0.813, Rec = 0.966, F1 = 0.883
+(C) : Prec = 1.000, Rec = 0.966, F1 = 0.983
+
+up_in_the_air
+	ANNOTATION  =   N NNN CED!  NN CDDDED NN CDD NN CDDDD CD N CD CDED N CD  S NN CD!  CD CDDD CDDD CDD CDD CDD CD N CD 
+	MICA        =         CDD      CDDDDD    CDD    CDDDD CD   CD CDDD   CD       CD   CD CDDD CDDD CDD CDD CDD CD   CD 
+
+	ANNOTATION  =   CED N CDD CDD N CD N!  CDDD CD CD CD CEDEDD CD CD CDDD CDD N CDED CD N CD CD!  N CDD CD CD CD CED N 
+	MICA        =   CDD   CDD CDD   CD     CDDD CD CD CD CDDDDD CD CD CDDD CDD   CDDD CD   CD CD     CDD CD CD CD CDD   
+
+	ANNOTATION  =   CDD CD CDDDD CD CDDD N  S NN CD N!  CD CDDDDD CED CDD CED N CDD N CDD  S N CDDDDDDDDD  S!  N CD N  S
+	MICA        =   CDD CD CDDDD CD CDDD         CD     CD CDDDDD CDD CDD CDD   CDD   CDD      CDDDDDDDDD        CD     
+
+	ANNOTATION  =    N  S NNN CDDDDD NNN CDD NNN CDDD N T   
+	MICA        =             CDDDDD     CDD     CDDD       
+
+(D) : Prec = 0.917, Rec = 1.000, F1 = 0.957
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+willow
+	ANNOTATION  =   NN NNN CD N CD ! S NNNN CED NN CD N CD NN CDD NNNN CDEDD T S NN CD NNNNN CD CD CEDDD CD CDD CD CD CD
+	MICA        =          CD   CD          CDD    CD   CD    CDD      CDDDD        CD       CD CD CDDDD CD CDD CD CD CD
+
+	ANNOTATION  =   D NNNN S NNNN NNNN CDDD CD CD CD N CD CDD NNN S NNNN CDD CED NNN CDD NNN S NN CD NNN S NNNN S NNNNN 
+	MICA        =   D                  CDDD CD CD CD   CD CDD            CDD CDD     CDD          CD                    
+
+	ANNOTATION  =   CD CED NNNNN CD CDDD CD CD CD N CDD NNNN NNNNNNN NNNNNN NNN CD CDD NN S NNNN S NNNN CDDD NNNNNN NNNN
+	MICA        =   CD CDD       CD CDDD CD CD CD   CDD                         CD CDD                  CDDD            
+
+	ANNOTATION  =    CD NNN CD CED CDD N CD CDD CD NNNN CDD NNN
+	MICA        =    CD     CD CDD CDD   CD CDD CD      CDD    
+
+(D) : Prec = 0.917, Rec = 1.000, F1 = 0.957
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+wolf_of_wall_street_the
+	ANNOTATION  =   NNN CDDDDDDDD T  ! !  S NNN CD CDD!! CDD NN CDD T ! NNNN NN CDDDDDDDDDDDD N CDDDDDDEDDDDDDDEEE!!CDDD
+	MICA        =                               CD CDD D CDD    CDD             CDDDDDDDDDDDD   CDDDDDDDDDDDDDDDDD DDDDD
+
+	ANNOTATION  =   DDDDD NNN CDDDDD N CDDDD N CDDDDDDD N! CDDDDEDEDDD N!! CDDDD ! CDD N CDDD N  S  S NN CDDDD  S NN CDD
+	MICA        =   DDDDD     CDDDDD   CDDDD   CDDDDDDD    CDDDDDDDDDD     CDDDD   CDD   CDDD            CDDDD       CDD
+
+	ANNOTATION  =   DDD  S N!! CDDD  S NN CDDDD ! NN CDDDD  S N CDDDDD NN  S NN CNNN !!! CEEDDDDDDDEEDD N  !!  S! NN CDD
+	MICA        =   DDD        CDDD       CDDDD      CDDDD      CDDDDD          CDDD       CDDDDDDDDDDD                 
+
+	ANNOTATION  =   D CD CDDDDD  S NNN CDD NN !!! S NNN
+	MICA        =     CD               CDD             
+
+(D) : Prec = 0.887, Rec = 0.873, F1 = 0.880
+(C) : Prec = 0.957, Rec = 0.815, F1 = 0.880
+
+xmen
+	ANNOTATION  =   N N S N N NNN NN N N NN NNN S N S NNN NN N CD NNN CD N CD NNN NNN S NN NNNN N NN NN CD N N CD NNNN N
+	MICA        =                                              CD     CD   CD                           CD     CD       
+
+	ANNOTATION  =   NNN NNN CDD CDD CD NN CDDD CD N CDD N CDD NN N S N N NN N NNN CD NN CDD N CDDDD NN CDD N CDDD CD CDD
+	MICA        =           CDD CDD CD    CDDD CD   CDD   CDD                     CD    CDD   CDDDD    CDD   CDDD CD CDD
+
+	ANNOTATION  =   DDDDD NN N CDDD CD CED N CDDDD NNN NNN CDDD E CD N NNNN N NN NNNN NNN NN N N NN N NNN N NNNN S N NN 
+	MICA        =   DDDDD      CDDD CD CDD   CDDDD         CDDD   CD                                                    
+
+	ANNOTATION  =   N NN NNN N N S N N NNN NN NNN NN N NNN CD N CD NNN CDD NN CD N CDD S 
+	MICA        =                                          CD   CD     CDD    CD   CDD   
+
+(D) : Prec = 0.983, Rec = 1.000, F1 = 0.991
+(C) : Prec = 1.000, Rec = 1.000, F1 = 1.000
+
+Total results :
+(D) : Prec = 0.829, Rec = 0.944, F1 = 0.883
+(C) : Prec = 0.976, Rec = 0.924, F1 = 0.950

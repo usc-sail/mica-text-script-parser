@@ -1,7 +1,12 @@
+# author - Sabyasachee
+
 import csv
 import argparse
 
 def prepare_for_annotation(script_filepath, annotation_filepath, i = 0, j = 500):
+	# write annotation csv file for script in script_filepath at filepath annotation_filepath
+	# i and j are the start and end line numbers
+
     lines = open(script_filepath).read().split("\n")
     writer = csv.writer(open(annotation_filepath, "w"))
     filler = ["" for _ in range(30)]
@@ -9,6 +14,7 @@ def prepare_for_annotation(script_filepath, annotation_filepath, i = 0, j = 500)
     writer.writerow(["","","Scene Boundary", "Scene Description/Direction", "Character", "Dialogue", "Dialogue Metadata", "Transition", "Metadata"])
     writer.writerow(["line","","S","N","C","D","E","T","M"])
     for line in lines[i: j + 1]:
+        line = line.replace("\t", "    ")
         writer.writerow([line, "", "", "", "", "", "", "", ""])
 
 if __name__ == "__main__":

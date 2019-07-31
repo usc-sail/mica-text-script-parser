@@ -1,24 +1,29 @@
+# author - Sabyasachee
+
 import re
 import os
 import sys
 import numpy as np
 from collections import Counter
-from check_duplicates import find_duplicates
 
 def count_indent_distribution(verbose = False):
+    # print distribution of number of movies to number of indents
+    # number of indents of a movie script is the minimum number of indents that cover atleast 95% of all lines
+    # if verbose is set, also print 5 random movies corresponding to each number of indents
+    # 
+    # return n_indents_to_movies dictionary
+    # n_indents_to_movies is mapping between number of indents to list of movies
+
     np.random.seed(1)
 
-    mica_parsed_scripts_dir = "../mica-scripts/parsed_scripts_with_context/"
-    mica_scripts_dir = "../mica-scripts/scripts_txt/"
+    movies = open("data/movies.txt").read().strip().split("\n")
+    n_indents_to_movies = dict()
 
-    hash_dict, empty_filenames = find_duplicates(mica_parsed_scripts_dir, ext = "txt")
-    print("\n")
-    n_indents_to_filenames = dict()
-
-    for _, filenames in hash_dict.items():
-        filepath = os.path.join(mica_scripts_dir, filenames[0])
+    for movie in movies:
+        filepath = "../mica-scripts/scripts_txt/{}.txt".format(movie)
         lines = open(filepath).read().split("\n")
         lines = [line for line in lines if line.strip()]
+        lines = [line.replace("\t","    ") for line in lines]
         n_total_lines = len(lines)
 
         indents = [re.match(r"^[\s]*", line).span()[1] for line in lines]
@@ -34,31 +39,30 @@ def count_indent_distribution(verbose = False):
                 break
             n_indents += 1
         
-        # if n_indents == 0:
-        #     print(filenames[0], indent_n_lines_tuples)
-        #     print(cumul_n_lines, 0.95)
-        #     sys.exit(0)
+        if n_indents == 0:
+            print(movie, indent_n_lines_tuples)
+            print(cumul_n_lines, 0.95)
+            sys.exit(0)
 
-        if n_indents not in n_indents_to_filenames:
-            n_indents_to_filenames[n_indents] = []
-        n_indents_to_filenames[n_indents].append(filenames[0])
+        if n_indents not in n_indents_to_movies:
+            n_indents_to_movies[n_indents] = []
+        n_indents_to_movies[n_indents].append(movie)
 
-    print("#unique indent distribution for 95% of lines in screenplay\n")
+    if verbose:
+        print(f"#unique indent distribution for 95% of lines in screenplay\n")
 
-    print(f"\t\t{'INDENTS':8s}\t{'FILES':8s}\t{'PERCENT':8s}\tFILENAMES")
-    n_indents_list = sorted(list(n_indents_to_filenames.keys()))
-    for n_indents in n_indents_list:
-        n_files = len(n_indents_to_filenames[n_indents])
-        percentage = 100*n_files/len(hash_dict)
-        filenames = np.array(n_indents_to_filenames[n_indents])
-        random_filenames = np.random.choice(filenames, size = min(5, filenames.size), replace = False)
-        if verbose:
-            print(f"\t\t{n_indents:8d}\t{n_files:8d}\t{percentage:8.2f}%\t{', '.join(random_filenames)}")
-        else:
-            print(f"\t\t{n_indents:8d}\t{n_files:8d}\t{percentage:8.2f}")
-    print()
+        print(f"\t\t{'INDENTS':8s}\t{'FILES':8s}\t{'PERCENT':8s}\tMOVIES")
+        n_indents_list = sorted(list(n_indents_to_movies.keys()))
 
-    return n_indents_to_filenames
+        for n_indents in n_indents_list:
+            n_movies = len(n_indents_to_movies[n_indents])
+            percentage = 100*n_movies/len(movies)
+            indent_movies = np.array(n_indents_to_movies[n_indents])
+            random_movies = np.random.choice(indent_movies, size = min(5, indent_movies.size), replace = False)
+            print(f"\t\t{n_indents:8d}\t{n_movies:8d}\t{percentage:8.2f}%\t{', '.join(random_movies)}")
+        print()
+
+    return n_indents_to_movies
 
 if __name__ == "__main__":
-    count_indent_distribution()
+    count_indent_distribution(verbose = True)

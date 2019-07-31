@@ -1,14 +1,25 @@
+# author Sabyasachee
+
 import os
 import hashlib
 import argparse
 
 def hash_content(content):
-    content = content.strip().replace(" ", "").lower()
+    # hash content string and return hash key
+    # remove all whitespaces and lowercase content string
+    # use md5 hash algorithm to hash and return hash key
+
+    content = content.strip().replace(" ", "").replace("\t", "").lower()
     hash_obj = hashlib.md5(content.encode())
     hash_key = hash_obj.hexdigest()
     return hash_key
 
 def find_duplicates(directory, ext = None, verbose = False):
+    # find empty and duplicate files in directory
+    # returns tuple hash_dict, empty_filenames
+    # hash_dict is dictionary of hash_key and list of files. files with the same hash key are duplicates of each other
+    # empty_filenames is list of empty file names
+
     if ext:
         filenames = [f for f in os.listdir(directory) if f.endswith("." + ext)]
     else:
