@@ -16,7 +16,7 @@ def check_scene_boundaries():
     examples = []
     mica_labels = []
     for movie, beg, end in zip(movies, begs, ends):
-        filepath = "../mica-scripts/scripts_txt/{}.txt".format(movie)
+        filepath = "../../mica-scripts/scripts_txt/{}.txt".format(movie)
         labels = script_parser(filepath, write = False)
         mica_labels.append(labels[beg - 1:end])
         examples.extend(open(filepath).read().split("\n")[beg - 1:end])

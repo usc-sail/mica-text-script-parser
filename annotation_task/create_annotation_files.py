@@ -39,7 +39,7 @@ def create_annotation_files():
         for movie in movies:
             any_good_start = False
             
-            filepath = "../mica-scripts/scripts_txt/{}.txt".format(movie)
+            filepath = "../../mica-scripts/scripts_txt/{}.txt".format(movie)
             screenplay = open(filepath, "r").read().split("\n")
             starts = np.arange(len(screenplay) - n_lines)
             starts = np.random.permutation(starts)

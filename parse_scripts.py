@@ -14,6 +14,9 @@ class script_parser:
     def is_scene_boundary(self, line):
         return ("INT" in line or "EXT" in line) and line.isupper()
 
+    def is_transition(self, line):
+        return ("CUT TO" in line or "FADE TO" in line or "FADE OUT" in line) and line.isupper()
+
     def remove_header_and_footer(self, script):
         lines=script.split('\n')
         n_header_lines = 0
@@ -166,13 +169,18 @@ class script_parser:
 
             if self.is_scene_boundary(line):
                 annotation_label_sequence += "S"
-                parsed_lines.append("##### {}".format(line.strip()))
+                parsed_lines.append("{}".format(line.strip()))
 
-            elif len(line.lstrip()) < len(line)/2.0 or len(speakermodeinbraces.sub('',line).strip().split())<=3:
+            elif self.is_transition(line):
+                annotation_label_sequence += "T"
+                parsed_lines.append("\t\t\t\t\t\t{}".format(line.strip()))
+
+            elif len(line.lstrip()) < len(line)/2.0 or len(speakermodeinbraces.sub('',line).strip().split()) <=3:
                 found_speaker=True
                 speaker=line.strip()
                 utterance_list=[]
                 line=lines[i]
+
                 while line.strip() != '' and i<len(lines):
                     line=speakermodeinbraces.sub('',line).strip()
                     utterance_list.append(line.strip())
@@ -182,8 +190,10 @@ class script_parser:
                     line=lines[i]
 
                 if len(utterance_list) == 0:
-                    annotation_label_sequence += " "
+                    annotation_label_sequence += "N"
+                    parsed_lines.append("\t\t{}".format(lines[i - 1].strip()))
                     context.append(lines[i-1].strip())
+
                 else:
                     speaker=speaker.replace(':', '')
                     speaker=speaker.replace('O.S.', '')
@@ -195,10 +205,16 @@ class script_parser:
                         annotation_label_sequence += "C"
                         annotation_label_sequence += "D"*len(utterance_list)
                         # parsed_lines.append('##### {0}'.format(' '.join(context)))
-                        parsed_lines.append('\t\t{0} => {1}'.format(speaker, utterance))
+                        parsed_lines.append('\t\t\t\t{0} => {1}'.format(speaker, utterance))
                         context=[]
                     else:
-                        annotation_label_sequence += " " + " "*len(utterance_list)
+                        annotation_label_sequence += "N" + "N"*len(utterance_list)
+                        parsed_lines.append("\t\t{}".format(speaker))
+                        parsed_lines.extend(["\t\t{}".format(u) for u in utterance_list])
+
+            elif line.strip():
+                annotation_label_sequence += "N"
+                parsed_lines.append("\t\t{}".format(line.strip()))
 
             else:
                 annotation_label_sequence += " "

@@ -13,7 +13,7 @@ def evaluate_mica():
     mica_labels = []
 
     for movie, beg, end in zip(movies, begs, ends):
-        filepath = "../mica-scripts/scripts_txt/{}.txt".format(movie)
+        filepath = "../../mica-scripts/scripts_txt/{}.txt".format(movie)
         labels = script_parser(filepath, write = False)
         labels = labels[beg - 1: end]
         mica_labels.append(labels)
@@ -32,10 +32,14 @@ def evaluate_mica():
     prec_D, rec_D, f1_D = calc_score(G, M, 'D')
     prec_C, rec_C, f1_C = calc_score(G, M, 'C')
     prec_S, rec_S, f1_S = calc_score(G, M, 'S')
+    prec_T, rec_T, f1_T = calc_score(G, M, 'T')
+    prec_N, rec_N, f1_N = calc_score(G, M, 'N')
     
     print("D: prec = {:.3f} rec = {:.3f} f1 = {:.3f}".format(prec_D, rec_D, f1_D))
     print("C: prec = {:.3f} rec = {:.3f} f1 = {:.3f}".format(prec_C, rec_C, f1_C))
     print("S: prec = {:.3f} rec = {:.3f} f1 = {:.3f}".format(prec_S, rec_S, f1_S))
+    print("T: prec = {:.3f} rec = {:.3f} f1 = {:.3f}".format(prec_T, rec_T, f1_T))
+    print("N: prec = {:.3f} rec = {:.3f} f1 = {:.3f}".format(prec_N, rec_N, f1_N))
 
 if __name__ == "__main__":
     evaluate_mica()  

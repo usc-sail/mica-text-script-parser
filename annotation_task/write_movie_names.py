@@ -8,8 +8,8 @@ def write_movie_names():
     # get list of unique non empty files from parsed_scripts_with_context directory
     # check if file is present in scripts_txt
 
-    mica_parsed_scripts_dir = "../mica-scripts/parsed_scripts_with_context/"
-    mica_scripts_dir = "../mica-scripts/scripts_txt/"
+    mica_parsed_scripts_dir = "../../mica-scripts/parsed_scripts_with_context/"
+    mica_scripts_dir = "../../mica-scripts/scripts_txt/"
 
     hash_dict, _ = find_duplicates(mica_parsed_scripts_dir, ext = "txt")
     files = []

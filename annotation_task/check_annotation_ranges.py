@@ -28,7 +28,7 @@ def check_annotation_ranges():
     sheetnames = wb.sheetnames[1:]
 
     for movie, beg, end, sheetname in zip(movies, begs, ends, sheetnames):
-        with open("../mica-scripts/scripts_txt/{}.txt".format(movie)) as fr:
+        with open("../../mica-scripts/scripts_txt/{}.txt".format(movie)) as fr:
             script = fr.read().split("\n")
             script_text = "\n".join(script[beg - 1: beg + 9])
             script_text += "..\n..\n..\n" + "\n".join(script[end - 10: end])

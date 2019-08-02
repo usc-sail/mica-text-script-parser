@@ -20,7 +20,7 @@ def count_indent_distribution(verbose = False):
     n_indents_to_movies = dict()
 
     for movie in movies:
-        filepath = "../mica-scripts/scripts_txt/{}.txt".format(movie)
+        filepath = "../../mica-scripts/scripts_txt/{}.txt".format(movie)
         lines = open(filepath).read().split("\n")
         lines = [line for line in lines if line.strip()]
         lines = [line.replace("\t","    ") for line in lines]
