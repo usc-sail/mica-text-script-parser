@@ -7,3 +7,5 @@ and Content Analytics (sail.usc.edu/~mica/) group of USC SAIL.
 If you use this code, please cite the paper: `Linguistic analysis of differences in portrayal of movie characters, in: Proceedings of Association for Computational Linguistics, Vancouver, Canada, 2017`. 
 
 For comments, bug reports, etc. contact akramakr@usc.edu
+
+Please consult the readme in the `annotation_task` folder for details on annotation and evaluation.
