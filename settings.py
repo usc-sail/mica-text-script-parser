@@ -1,0 +1,1 @@
+DATA_FOLDER = "/home/saby/projects/mica-text-script-parser/data/"

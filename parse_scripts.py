@@ -252,9 +252,9 @@ class script_parser:
         return label_sequence
 
 if __name__ == '__main__':
-    html_dir = '../Data/scripts_html'
-    text_dir = '../Data/scripts_txt'
-    out_dir = '../Data/parsed_scripts'
+    html_dir = 'data/scripts_html'
+    text_dir = 'data/scripts_txt'
+    out_dir = 'data/parsed_scripts_with_scenes'
 
     if len(sys.argv)>1:
         files=sys.argv[1:]

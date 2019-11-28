@@ -6,39 +6,45 @@ import os
 import sys
 import re
 import PyPDF2
+import pandas as pd
 
 __detailedlog__ = True
 
-#leave this variable blank if there are no noisy scripts
-noisy_movies='../Data/noisy_movies_list.txt'
 
 class extract_scripts:
-    def __init__(self,html_dir,pdf_dir,text_dir):
+    def __init__(self,html_dir,pdf_dir,text_dir,noisy_movies_path, info_path):
         self.html_dir=html_dir
         self.pdf_dir=pdf_dir
         self.text_dir=text_dir
+        self.noisy_movies_path=noisy_movies_path
+        self.info_path=info_path
 
     def extract_from_html(self):
         if __detailedlog__:
             print("Extracting scripts from fetched html files...")
 
-        if noisy_movies != None:
-            inptr=open(noisy_movies)
+        if self.noisy_movies_path != None:
+            inptr=open(self.noisy_movies_path)
             noisy_movies_list=[x.strip() for x in inptr.readlines()]
         else:
             noisy_movies_list=[]
 
         files_list = os.listdir(self.html_dir)
+
+        info_df = pd.read_csv(self.info_path, index_col = 0)
         
         for file in files_list:
             if not file.endswith('html'):
                 continue
 
-            in_ptr = open(os.path.join(self.html_dir, file))
+            file_name = os.path.join(self.html_dir, file)
+            out_file_name = os.path.join(self.text_dir, file.replace(".html", ".txt"))
+
+            in_ptr = open(file_name)
             soup = BeautifulSoup(in_ptr, 'html.parser')
             pre_elements_list = soup.find_all('pre')
        
-            file=file.replace('.html', '')
+            file = info_df[info_df["file"] == file_name]["movie"].item()
 
             if len(pre_elements_list)==0:
                 print("No pre elements in {0},".format(file), 
@@ -78,27 +84,32 @@ class extract_scripts:
                 file == 'star_wars_the_phantom_menace':
                 screenplay = screenplay.replace(':', '\n')
 
-            out_ptr = open(os.path.join(self.text_dir, file+'.txt'), 'w')
+            out_ptr = open(out_file_name, 'w')
             out_ptr.write(screenplay)
             out_ptr.close()
         
             if __detailedlog__:
                 print("Extracted text for: {0}".format(file))
  
-        print("Done extracting text from html scripts")
+        print("Done extracting text from html scripts\n\n\n")
 
     def extract_from_pdf(self):
         if __detailedlog__:
             print("Extracting scripts from fetched pdf files...")
 
         files_list = os.listdir(self.pdf_dir)
+        info_df = pd.read_csv(self.info_path, index_col = 0)
 
         for file in files_list:
             if not file.endswith('pdf'):
                 continue
 
+            file_name = os.path.join(self.pdf_dir, file)
+            out_file_name = os.path.join(self.text_dir, file.replace(".pdf", ".txt"))
+            file = info_df[info_df["file"] == file_name]["movie"].item()
+
             try:
-                inptr=open(os.path.join(self.pdf_dir, file), 'rb')
+                inptr=open(file_name, 'rb')
                 pdfreader=PyPDF2.PdfFileReader(inptr)
 
                 pages=[]
@@ -115,12 +126,7 @@ class extract_scripts:
                         "Arguments: {0}".format(e.args))
                 continue
 
-            outfile=os.path.join(self.text_dir, file[:-4]+'.txt')
-
-            if os.path.exists(outfile):
-                continue
-
-            outptr=open(outfile, 'w')
+            outptr=open(out_file_name, 'w')
             outptr.write(' '.join(pages))
             outptr.close()
             
@@ -128,7 +134,7 @@ class extract_scripts:
             if __detailedlog__:
                 print("Extracted text for: {0}".format(file))
 
-        print("Done extracting text from pdf scripts")
+        print("Done extracting text from pdf scripts\n\n\n")
 
     def extract_scripts(self):
         self.extract_from_html()
