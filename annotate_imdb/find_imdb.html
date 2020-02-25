@@ -1,0 +1,166 @@
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<section class="container" id="Sentiment">
+<div class="row">
+<div class="col-xs-12 col-md-12">
+<div class="panel panel-primary"><a class="panel-heading" href="javascript:void(0);" id="collapseTrigger"><strong>Instructions</strong> <span class="collapse-text">(Click to expand)</span> </a>
+
+<div class="panel-body" id="instructionBody">
+
+    <h3><b>Task</b></h3>
+    <p>
+        You will be given the <a href="https://www.imsdb.com/" target="blank_">IMSDb</a> url of a movie script. 
+        Your task is to find the <a href="https://www.imdb.com/" target="blank_">IMDb</a> url of the corresponding movie.
+    </p>
+
+    <h3><b>Example</b></h3>
+    <p>
+        Given the IMSDb url <a href="https://www.imsdb.com/Movie%20Scripts/127%20Hours%20Script.html" target="blank_">127_script</a>, click on the link and open the page shown in Figure 1. 
+        Observe that the title of the movie is 127 hours and it is written by Simon Beaufoy and Danny Boyle.
+        Copy the title 127 Hours to the <b>Title</b> field.
+    </p>
+    <p>
+        Search for 127 hours in IMDb, and find this <a href="https://www.imdb.com/title/tt1542344">127_movie</a> page, shown in Figure 2.
+        Compare the graphic, title and writers of the script and the IMDb page, and check if they match.
+        It matches in this case, so you copy the IMDb page url to the <b>IMDb</b> field.
+    </p>
+    <p>
+        The graphic and/or the names of the screenplay writers might be absent. You can then click on the <i>Read Script</i> link in the IMSDb page, and match the characters found in the script with the <i>CAST</i> section of the IMDb page. 
+    </p>
+
+    <div class="row">
+        <div class="column"><img alt="script" src="https://sail.usc.edu/profession/pictures/127_script.png" style="width:100%" />
+        <div class="caption"><strong>Figure 1</strong></div>
+        </div>
+        
+        <div class="column"><img alt="movie" src="https://sail.usc.edu/profession/pictures/127_movie.png" style="width:100%" />
+        <div class="caption"><strong>Figure 2</strong></div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="row" id="workContent">
+<div class="col-xs-12 col-md-12 content">
+<div class="well" id="given">
+
+<b>Script:</b> &nbsp;&nbsp; <a href="${home_url}" target="blank_">${home_url}</a>
+
+</div>
+</div>
+
+<div class="col-xs-12 col-md-12 fields">
+
+<div class="form-group">
+    <h4>Title :</h4> 
+	<input class="form-control" id="title" name="title" type="text" required />
+</div>
+
+<div class="form-group">
+	<h4>IMDb :</h4>
+	<input class="form-control" id="imdb" name="imdb" type="text" required />
+</div>
+
+</div>
+</div>
+</section>
+
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" /><!-- Open internal style sheet -->
+
+<style type="text/css">#collapseTrigger{
+		color:#fff;
+		display: block;
+		text-decoration: none;
+	}
+
+	#submitButton{
+		white-space: normal;
+	}
+	#instructionBody table{
+		font-size: 14px;
+		margin-top: 10px;
+	}
+	#instructionBody table caption{
+		text-align: left;
+		padding: 0 0 5px 0;
+	}
+	#Inputs{
+		display: block;
+		margin-top: 10px;
+	}
+	.content{
+		margin-bottom: 15px;
+	}
+	.radio:first-of-type{
+		margin-top: -5px;
+	}
+
+	 /* Three image containers (use 25% for four, and 50% for two, etc) */
+	.column {
+	float: left;
+	width: 50%;
+	padding: 20px;
+	}
+
+	/* Clear floats after image containers */
+	.row::after {
+	content: "";
+	clear: both;
+	display: table;
+	} 
+
+	.caption {
+		text-align: center;
+	}
+
+	body {
+		padding-bottom: 100px;
+	}
+
+</style>
+
+<!-- Close internal style sheet --><!-- External JS references -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Open internal javascript -->
+
+<script>
+    $(document).ready(function() {
+      // Instructions expand/collapse
+      var content = $('#instructionBody');
+      var trigger = $('#collapseTrigger');
+      // content.hide();
+      $('.collapse-text').text('(Click to collapse)');
+      trigger.click(function(){
+        content.toggle();
+        var isVisible = content.is(':visible');
+        if(isVisible){
+          $('.collapse-text').text('(Click to collapse)');
+        }else{
+          $('.collapse-text').text('(Click to expand)');
+        }
+      });
+      // end expand/collapse
+
+      // highlight selected category
+      var inputs = $("#Inputs input:radio");
+      inputs.change(function(){
+        inputs.parent().removeClass("btn-success");
+        inputs.parent().addClass("btn-default");
+        if($(this).is(":checked")){
+          $(this).parent().removeClass("btn-default");
+          $(this).parent().addClass("btn-success");
+        }else{
+          $(this).parent().removeClass("btn-success");
+          $(this).parent().addClass("btn-default");
+        }
+      });
+      // end highlight
+
+    });
+
+  </script><!-- Close internal javascript-->
