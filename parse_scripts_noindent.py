@@ -4,13 +4,14 @@ import os
 import numpy as np
 import argparse
 
+#------------------------------------------------------------------------------------
 # PROCESS ARGUMENTS
+#------------------------------------------------------------------------------------
 def read_args():
 	parser = argparse.ArgumentParser(description='Script that parses a movie script pdf into its constituent classes')
 	parser.add_argument("-i", "--input", help="Path to script PDF to be parsed", required=True)
 	parser.add_argument("-o", "--output", help="Path to directory for saving output", required=True)
 	args = parser.parse_args()
-	# RETURN ARGUMENTS
 	return os.path.abspath(args.input), os.path.abspath(args.output)
 
 if __name__ == "__main__":
@@ -19,7 +20,9 @@ if __name__ == "__main__":
 	#------------------------------------------------------------------------------------
 	file_orig, save_dir = read_args()
 	tag_set = ['S', 'N', 'C', 'D', 'E', 'T', 'M']
-	meta_set = ['BLACK', '**darkness. **']
+	meta_set = ['BLACK', 'darkness']
+	bound_set = ['INT.', 'EXT.']
+	trans_set = ['CUT TO']
 	char_max_words = 7
 	#------------------------------------------------------------------------------------
 	# CONVERT PDF TO TEXT
@@ -44,23 +47,32 @@ if __name__ == "__main__":
 	tag_vec = np.array(['0' for x in range(num_lines)])
 	#------------------------------------------------------------------------------------
 	# STAGE 1: DETECT METADATA
-	# (LOOK FOR CONTENT PRECEDING FIRST ALL-CAPS LINE CONTAINING "BLACK")
+	# (LOOK FOR CONTENT PRECEDING SPECIFIC PHRASES THAT INDICATE BEGINNING OF MOVIE)
 	#------------------------------------------------------------------------------------
-	met_ind = [i for i, x in enumerate(script_noind) if tag_vec[i] not in tag_set and \
-														x in meta_set]
+	met_ind = []
+	for i, x in enumerate(script_noind):
+		if tag_vec[i] not in tag_set:
+			if len(x.split()) > 0:
+				z = []
+				for y in x.split():
+					z.append(''.join([c for c in y if c.isalnum()]))
+                
+				if len(set(z) & set(meta_set)) > 0:
+					met_ind.append(i)
+    
 	if len(met_ind) > 0:
 		for i, x in enumerate(script_noind[: met_ind[0]]):
 			if len(x.split()) > 0:
 				tag_vec[i] = 'M'
         
-		tag_vec[met_ind[0]] = 'S'
+		tag_vec[met_ind[0]] = 'T'
     
 	#------------------------------------------------------------------------------------
 	# STAGE 2: DETECT SCENE BOUNDARIES
 	# (LOOK FOR ALL-CAPS LINES CONTAINING "INT." OR "EXT.")
 	#------------------------------------------------------------------------------------
 	bound_ind = [i for i, x in enumerate(script_noind) if tag_vec[i] not in tag_set and \
-														x.isupper() and ('INT.' in x or 'EXT.' in x)]
+														x.isupper() and x in bound_set]
 	for x in bound_ind:
 		tag_vec[x] = 'S'
     
@@ -91,7 +103,7 @@ if __name__ == "__main__":
 	trans_ind = [i for i, x in enumerate(script_noind) if tag_vec[i] not in tag_set and x.isupper()\
 														and script_noind[i - 1] == ''\
 														and script_noind[i + 1] == ''\
-														and 'CUT TO' in x]
+														and x in trans_set]
 	for x in trans_ind:
 		tag_vec[x] = 'T'
     
