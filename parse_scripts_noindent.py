@@ -8,27 +8,38 @@ import argparse
 # PROCESS ARGUMENTS
 #------------------------------------------------------------------------------------
 def read_args():
-	parser = argparse.ArgumentParser(description='Script that parses a movie script pdf into its constituent classes')
-	parser.add_argument("-i", "--input", help="Path to script PDF to be parsed", required=True)
+	parser = argparse.ArgumentParser(description='Script that parses a movie script pdf/txt into its constituent classes')
+	parser.add_argument("-i", "--input", help="Path to script PDF/TXT to be parsed", required=True)
 	parser.add_argument("-o", "--output", help="Path to directory for saving output", required=True)
 	args = parser.parse_args()
 	return os.path.abspath(args.input), os.path.abspath(args.output)
 
 if __name__ == "__main__":
+	file_orig, save_dir = read_args()
+	parse(file_orig, save_dir)
+
+def parse(file_orig, save_dir, save_name=None, abridged_name=None):
 	#------------------------------------------------------------------------------------
 	# DEFINE
 	#------------------------------------------------------------------------------------
-	file_orig, save_dir = read_args()
 	tag_set = ['S', 'N', 'C', 'D', 'E', 'T', 'M']
 	meta_set = ['BLACK', 'darkness']
 	bound_set = ['INT.', 'EXT.']
 	trans_set = ['CUT TO']
 	char_max_words = 7
+	
 	#------------------------------------------------------------------------------------
 	# CONVERT PDF TO TEXT
 	#------------------------------------------------------------------------------------
-	file_name = file_orig.replace('.pdf', '.txt')
-	subprocess.call('pdftotext -layout ' + file_orig + ' ' + file_name, shell=True)
+	if file_orig.endswith(".pdf"):
+		file_name = file_orig.replace('.pdf', '.txt')
+		subprocess.call('pdftotext -layout ' + file_orig + ' ' + file_name, shell=True)
+	elif file_orig.endswith(".txt"):
+		file_name = file_orig
+	else:
+		print("ERROR: File should be either pdf or txt")
+		return
+	
 	# READ TEXT FILE
 	fid = open(file_name, 'r')
 	script_orig = fid.read().splitlines()
@@ -129,7 +140,11 @@ if __name__ == "__main__":
 	#------------------------------------------------------------------------------------
 	# WRITE PARSED SCRIPT TO FILE
 	#------------------------------------------------------------------------------------
-	save_name = save_dir + '/' + file_name.split('/')[-1].strip('.txt') + '_parsed.txt'
+	if save_name is None:
+		save_name = os.path.join(save_dir, file_name.split('/')[-1].rstrip('.txt') + '_parsed.txt')
+	else:
+		save_name = os.path.join(save_dir, save_name)
+		
 	fid = open(save_name, 'w')
 	for i, x in enumerate(tag_valid):
 		if x in ['M', 'T', 'S']:
@@ -174,7 +189,10 @@ if __name__ == "__main__":
 	fid = open(save_name, 'r')
 	parsed_script = fid.read().splitlines()
 	fid.close()
-	abridged_name = save_name.strip('.txt') + '_abridged.txt'
+	if abridged_name is None:
+		abridged_name = save_name.rstrip('.txt') + '_abridged.txt'
+	else:
+		abridged_name = os.path.join(save_dir, abridged_name)
 	fid = open(abridged_name, 'w')
 	abridged_script = [x for x in parsed_script if x.startswith('C') or x.startswith('D')]
 	for i in range(0, len(abridged_script), 2):
