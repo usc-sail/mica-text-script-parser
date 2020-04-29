@@ -6,19 +6,6 @@ import argparse
 import re
 
 #------------------------------------------------------------------------------------
-# REMOVE NON-ALPHANUMERIC CHARACTERS FROM STRING
-#------------------------------------------------------------------------------------
-def read_args():
-	parser = argparse.ArgumentParser(description='Script that parses a movie script pdf/txt into its constituent classes')
-	parser.add_argument("-i", "--input", help="Path to script PDF/TXT to be parsed", required=True)
-	parser.add_argument("-o", "--output", help="Path to directory for saving output", required=True)
-	parser.add_argument("-a", "--abridged", help="Print abridged version (on/off)", default='off')
-	args = parser.parse_args()
-	if args.abridged not in ['on', 'off']: raise AssertionError("Invalid value. Choose either off or on")
-	return os.path.abspath(args.input), os.path.abspath(args.output), args.abridged
-
-
-#------------------------------------------------------------------------------------
 # PROCESS ARGUMENTS
 #------------------------------------------------------------------------------------
 def read_args():
@@ -158,7 +145,7 @@ def parse(file_orig, save_dir, abr_flag, save_name=None, abridged_name=None):
 	# WRITE PARSED SCRIPT TO FILE
 	#------------------------------------------------------------------------------------
 	if save_name is None:
-		save_name = os.path.join(save_dir, file_name.split('/')[-1].rstrip('.txt') + '_parsed.txt')
+		save_name = os.path.join(save_dir, file_name.split('/')[-1].replace('.txt', '') + '_parsed.txt')
 	else:
 		save_name = os.path.join(save_dir, save_name)
 		
