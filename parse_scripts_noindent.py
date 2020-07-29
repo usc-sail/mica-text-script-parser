@@ -22,20 +22,24 @@ def read_args():
 
 
 # READ FILE
+def read_txt(file_path):
+	fid = open(file_path, 'r')
+	txt_file = fid.read().splitlines()
+	fid.close()
+	return txt_file
+
+
+# PROCESS FILE
 def read_file(file_orig):
 	if file_orig.endswith(".pdf"):
 		file_name = file_orig.replace('.pdf', '.txt')
-		subprocess.call('pdftotext -layout ' + file_orig + ' ' + file_name, shell=True)
-	elif file_orig.endswith(".txt"):
-		file_name = file_orig
-	else:
-		raise AssertionError("File should be either pdf or txt")
-    
-	fid = open(file_name, 'r')
-	script_orig = fid.read().splitlines()
-	fid.close()
-	if file_orig.endswith(".pdf"):
+		subprocess.call(['pdftotext', '-layout', file_orig, file_name])
+		script_orig = read_txt(file_name)
 		subprocess.call('rm ' + file_name, shell=True)
+	elif file_orig.endswith(".txt"):
+		script_orig = read_txt(file_orig)
+	else:
+		raise AssertionError("Movie script file format should be either pdf or txt")
     
 	return script_orig
 
@@ -116,12 +120,17 @@ def get_char_dial(script_noind, tag_vec, tag_set, char_max_words):
 														and len(script_noind[i + 1].split()) > 0\
 														and len(x.split()) < char_max_words\
 														and any([separate_dial_meta(x)[y] for y in [0, 2]])]
-	for x in char_ind:
-		tag_vec[x] = 'C'
+	if char_ind[-1] < (len(script_noind) - 1):
+		char_ind += [len(script_noind) - 1]
+	else:
+		char_ind += [len(script_noind)]
+	
+	for x in range(len(char_ind) - 1):
+		tag_vec[char_ind[x]] = 'C'
 		dial_flag = 1
 		while dial_flag > 0:
-			line_ind = x + dial_flag
-			if len(script_noind[line_ind].split()) > 0:
+			line_ind = char_ind[x] + dial_flag
+			if len(script_noind[line_ind].split()) > 0 and line_ind < char_ind[x + 1]:
 				dial_str, dial_meta_str, rem_str = separate_dial_meta(script_noind[line_ind])
 				if dial_str != '' or rem_str != '':
 					tag_vec[line_ind] = 'D'
@@ -210,30 +219,49 @@ def combine_tag_lines(tag_valid, script_valid):
 	return tag_final, script_final
 
 
+# CHECK FOR UN-MERGED CLASSES
+def find_same(tag_valid):
+	same_ind_mat = np.empty((0, 2), dtype=int)
+	if len(tag_valid) > 1:
+		check_start = 0
+		check_end = 1
+		while check_start < (len(tag_valid) - 1):
+			if tag_valid[check_start] != 'M' and tag_valid[check_start] == tag_valid[check_end]:
+				while check_end < len(tag_valid) and tag_valid[check_start] == tag_valid[check_end]:
+					check_end += 1
+                
+				append_vec = np.array([[check_start, (check_end - 1)]], dtype=int)
+				same_ind_mat = np.append(same_ind_mat, append_vec, axis=0)
+				check_end += 1
+				check_start = check_end - 1
+			else:
+				check_start += 1
+				check_end += 1
+    
+	return same_ind_mat
+
+
 # MERGE CONSECUTIVE IDENTICAL CLASSES
 def merge_tag_lines(tag_final, script_final):
-	merge_ind = [i for i in range(len(tag_final) - 1) if tag_final[i + 1] != 'M' and \
-														(tag_final[i] == tag_final[i + 1])]
-	merge_ind += [len(tag_final) - 1]
-	merge_unique = [merge_ind[i] for i in np.where(np.diff(merge_ind) != 1)[0]]
-	if len(merge_unique) > 0:
-		tag_merged = []
-		script_merged = []
-		last_ind = 0
-		for merge_ind in range(len(merge_unique)):
-			# PREPEND PREVIOUS
-			tag_ind = merge_unique[merge_ind]
-			tag_merged += tag_final[last_ind: tag_ind]
-			script_merged += script_final[last_ind: tag_ind]
-			# MERGE CURRENT
-			check_tag = tag_final[tag_ind]
-			tag_end = [i for i, x in enumerate(tag_final[(tag_ind + 1): ]) if x != check_tag][0]
-			tag_merged += [check_tag]
-			script_merged += [' '.join(script_final[tag_ind: (tag_ind + tag_end + 1)])]
-			last_ind = (tag_ind + tag_end + 1)
-			if tag_ind == merge_unique[-1]:
-				tag_merged += tag_final[last_ind: ]
-				script_merged += script_final[last_ind: ]
+	merge_ind = find_same(tag_final)
+	if merge_ind.shape[0] > 0:
+		# PRE-MERGE DISSIMILAR
+		tag_merged = tag_final[: merge_ind[0, 0]]
+		script_merged = script_final[: merge_ind[0, 0]]
+		for ind in range(merge_ind.shape[0] - 1):
+			# CURRENT MERGE SIMILAR
+			tag_merged += [tag_final[merge_ind[ind, 0]]]
+			script_merged += [' '.join(script_final[merge_ind[ind, 0]: (merge_ind[ind, 1] + 1)])]
+			# CURRENT MERGE DISSIMILAR
+			tag_merged += tag_final[(merge_ind[ind, 1] + 1): merge_ind[(ind + 1), 0]]
+			script_merged += script_final[(merge_ind[ind, 1] + 1): merge_ind[(ind + 1), 0]]
+        
+		# POST-MERGE SIMILAR
+		tag_merged += [tag_final[merge_ind[-1, 0]]]
+		script_merged += [' '.join(script_final[merge_ind[-1, 0]: (merge_ind[-1, 1] + 1)])]
+		# POST-MERGE DISSIMILAR
+		tag_merged += tag_final[(merge_ind[-1, 1] + 1): ]
+		script_merged += script_final[(merge_ind[-1, 1] + 1): ]
 	else:
 		tag_merged = tag_final
 		script_merged = script_final
@@ -241,37 +269,74 @@ def merge_tag_lines(tag_final, script_final):
 	return tag_merged, script_merged
 
 
-# REARRANGE DIALOGUE METADATA TO ALWAYS APPEAR AFTER DIALOGUE
-def rearrange_tag_lines(tag_merged, script_merged):	
-	dial_met_ind = [i for i in range(1, (len(tag_merged) - 1)) if tag_merged[i] == 'E' and \
-												  tag_merged[i - 1] in ['C', 'D'] and \
-												  tag_merged[i + 1] == 'D']
-	if len(dial_met_ind) > 0:
-		for tag_ind in dial_met_ind:
-			temp_ind = min([i for i, x in enumerate(tag_merged[(tag_ind + 1): ]) if x != 'D'])
-			# REARRANGE TAGS
-			tag_merged[tag_ind: (tag_ind + temp_ind)] = tag_merged[(tag_ind + 1): (tag_ind + temp_ind + 1)]
-			tag_merged[tag_ind + temp_ind] = 'E'
-			# REARRANGE LINES
-			temp_line = script_merged[tag_ind]
-			script_merged[tag_ind: (tag_ind + temp_ind)] = script_merged[(tag_ind + 1): (tag_ind + temp_ind + 1)]
-			script_merged[tag_ind + temp_ind] = temp_line
-    
-	return tag_merged, script_merged
-
-
-# CHECK FOR UN-MERGED CLASSES
-def find_same(tag_valid):
-	same_ind = [i for i in range(len(tag_valid) - 1) if (tag_valid[i] != 'M' and \
-														(tag_valid[i] == tag_valid[i + 1]))]
-	return len(same_ind)
-
-
 # CHECK FOR DIALOGUE METADATA PRECEDING DIALOGUE
 def find_arrange(tag_valid):
-	arrange_ind = [i for i in range(len(tag_valid) - 1) if tag_valid[i] == 'E' and \
-															tag_valid[i + 1] == 'D']
-	return len(arrange_ind)
+	c_ind = [i for i,x in enumerate(tag_valid) if x == 'C']
+	c_segs = []
+	arrange_ind = []
+	invalid_set = [['C', 'E', 'D'], ['C', 'D', 'E', 'D']]
+	if len(c_ind) > 0:
+		# BREAK UP INTO C-* BLOCKS
+		if c_ind[0] != 0:
+			c_segs.append(tag_valid[: c_ind[0]])
+        
+		for i in range((len(c_ind) - 1)):
+			c_segs.append(tag_valid[c_ind[i]: c_ind[i + 1]])
+        
+		c_segs.append(tag_valid[c_ind[-1]: ])
+		# RE-ARRANGE IN BLOCKS IF REQUIRED
+		for i in range(len(c_segs)):
+			inv_flag = 0
+			if len(c_segs[i]) > 2:
+				if any([c_segs[i][j: (j + len(invalid_set[0]))] == invalid_set[0] \
+						for j in range(len(c_segs[i]) - len(invalid_set[0]) + 1)]):
+					inv_flag = 1
+            
+			if inv_flag == 0 and len(c_segs[i]) > 3:
+				if any([c_segs[i][j: (j + len(invalid_set[1]))] == invalid_set[1] \
+						for j in range(len(c_segs[i]) - len(invalid_set[1]) + 1)]):
+					inv_flag = 1
+            
+			if inv_flag == 1:
+				arrange_ind.append(i)
+    
+	return c_segs, arrange_ind
+
+
+# REARRANGE DIALOGUE METADATA TO ALWAYS APPEAR AFTER DIALOGUE
+def rearrange_tag_lines(tag_merged, script_merged):
+	tag_rear = []
+	script_rear = []
+	char_blocks, dial_met_ind = find_arrange(tag_merged)
+	if len(dial_met_ind) > 0:
+		last_ind = 0
+		for ind in range(len(char_blocks)):
+			if ind in dial_met_ind:
+				# ADD CHARACTER
+				tag_rear += ['C']
+				script_rear.append(script_merged[last_ind])
+				# ADD DIALOGUE
+				if 'D' in char_blocks[ind]:
+					tag_rear += ['D']
+					script_rear.append(' '.join([script_merged[last_ind + i] \
+										for i, x in enumerate(char_blocks[ind]) if x == 'D']))
+                
+				# ADD DIALOGUE METADATA
+				if 'E' in char_blocks[ind]:
+					tag_rear += ['E']
+					script_rear.append(' '.join([script_merged[last_ind + i] \
+										for i, x in enumerate(char_blocks[ind]) if x == 'E']))
+				# ADD REMAINING
+				tag_rear += [x for x in char_blocks[ind] if x not in ['C', 'D', 'E']]
+				script_rear += [script_merged[last_ind + i] \
+								for i, x in enumerate(char_blocks[ind]) if x not in ['C', 'D', 'E']]
+			else:
+				tag_rear += char_blocks[ind]
+				script_rear += script_merged[last_ind: (last_ind + len(char_blocks[ind]))]
+            
+			last_ind += len(char_blocks[ind])
+    
+	return tag_rear, script_rear
 
 
 # PARSER FUNCTION
@@ -331,7 +396,7 @@ def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, ab
 	# FORMAT TAGS, LINES
 	tag_valid, script_valid = combine_tag_lines(tag_valid, script_valid)
 	max_rev = 0
-	while find_same(tag_valid) > 0 or find_arrange(tag_valid) > 0:
+	while find_same(tag_valid).shape[0] > 0 or len(find_arrange(tag_valid)[1]) > 0:
 		tag_valid, script_valid = merge_tag_lines(tag_valid, script_valid)
 		tag_valid, script_valid = rearrange_tag_lines(tag_valid, script_valid)
 		max_rev += 1
