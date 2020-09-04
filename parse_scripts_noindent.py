@@ -61,9 +61,9 @@ def get_scene_bound(script_noind, tag_vec, tag_set, bound_set):
 # LOOK FOR ALL-CAPS LINES PRECEDED BY NEWLINE, FOLLOWED BY NEWLINE AND CONTAINING "CUT " OR "FADE "
 def get_trans(script_noind, tag_vec, tag_set, trans_thresh, trans_set):
 	re_func = re.compile('[^a-zA-Z ]')
-	trans_ind = [i for i, x in enumerate(script_noind) if tag_vec[i] not in tag_set and x.isupper()\
+	trans_ind = [i for i, x in enumerate(script_noind) if tag_vec[i] not in tag_set\
 														and len(re_func.sub('', x).split()) < trans_thresh\
-														and any([y in x for y in trans_set])]
+														and any([y in x.lower() for y in trans_set])]
 	if len(trans_ind) > 0:
 		for x in trans_ind:
 			tag_vec[x] = 'T'
@@ -114,7 +114,7 @@ def separate_dial_meta(line_str):
 # DIALOGUE IS WHATEVER IMMEDIATELY FOLLOWS CHARACTER
 # EITHER CHARACTER OR DIALOGUE MIGHT CONTAIN DILAOGUE METADATA; WILL BE DETECTED LATER
 def get_char_dial(script_noind, tag_vec, tag_set, char_max_words):
-	char_ind = [i for i, x in enumerate(script_noind) if tag_vec[i] not in tag_set and x.isupper()\
+	char_ind = [i for i, x in enumerate(script_noind) if tag_vec[i] not in tag_set and any([y.isupper() for y in x.split()])\
 														and i != 0 and i != (len(script_noind) - 1)\
 														# and len(script_noind[i - 1].split()) == 0\
 														and len(script_noind[i + 1].split()) > 0\
@@ -156,10 +156,21 @@ def get_scene_desc(script_noind, tag_vec, tag_set):
 	return tag_vec
 
 
+# CHECK IF LINES CONTAIN START OF PARENTHESES
+def par_start(line_set):
+	return [i for i, x in enumerate(line_set) if '(' in x]
+
+
+# CHECK IF LINES CONTAIN START OF PARENTHESES
+def par_end(line_set):
+	return [i for i, x in enumerate(line_set) if ')' in x]
+
+
 # COMBINE MULTI-LINE CLASSES, SPLIT MULTI-CLASS LINES
 def combine_tag_lines(tag_valid, script_valid):
 	tag_final = []
 	script_final = []
+	changed_tags = [x for x in tag_valid]
 	for i, x in enumerate(tag_valid):
 		if x in ['M', 'T', 'S']:
 			# APPEND METADATA, TRANSITION AND SCENE BOUNDARY LINES AS THEY ARE
@@ -170,8 +181,10 @@ def combine_tag_lines(tag_valid, script_valid):
 			if i == 0 or x != tag_valid[i - 1]:
 				# INITIALIZE IF FIRST OF MULTIPLE LINES
 				to_combine = []
+				comb_ind = []
             
 			to_combine += script_valid[i].split()
+			comb_ind.append(i)
 			if i == (len(tag_valid) - 1) or x != tag_valid[i + 1]:
 				combined_str = ' '.join(to_combine)
 				if x == 'N':
@@ -181,7 +194,22 @@ def combine_tag_lines(tag_valid, script_valid):
 				else:
 					_, in_par, _ = separate_dial_meta(combined_str)
 					if in_par != '':
-						# IF DIALOGUE METADATA PRESENT, EXTRACT IT
+						# FIND LINES CONTAINING DIALOGUE METADATA
+						comb_lines = [script_valid[j] for j in comb_ind]
+						dial_meta_ind = []
+						while len(par_start(comb_lines)) > 0 and len(par_end(comb_lines)) > 0:
+							start_ind = comb_ind[par_start(comb_lines)[0]]
+							end_ind = comb_ind[par_end(comb_lines)[0]]
+							dial_meta_ind.append([start_ind, end_ind])
+							comb_ind = [x for x in comb_ind if x > end_ind]
+							comb_lines = [script_valid[j] for j in comb_ind]
+                        
+						# REPLACE OLD TAGS WITH DIALOGUE METADATA TAGS
+						for dial_ind in dial_meta_ind:
+							for change_ind in range(dial_ind[0], (dial_ind[1] + 1)):
+								changed_tags[change_ind] = 'E'
+                        
+						# EXTRACT DIALOGUE METADATA
 						dial_meta_str = ''
 						char_dial_str = ''
 						while '(' in combined_str and ')' in combined_str:
@@ -216,7 +244,7 @@ def combine_tag_lines(tag_valid, script_valid):
 			tag_final.append('E')
 			script_final.append(dial_met)
     
-	return tag_final, script_final
+	return tag_final, script_final, changed_tags
 
 
 # CHECK FOR UN-MERGED CLASSES
@@ -345,12 +373,12 @@ def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, ab
 	# DEFINE
 	tag_set = ['S', 'N', 'C', 'D', 'E', 'T', 'M']
 	meta_set = ['BLACK', 'darkness']
-	bound_set = ['int. ', 'ext. ', 'int ', 'ext ']
-	trans_set = ['CUT ', 'FADE ', 'cut ']
-	char_max_words = 7
+	bound_set = ['int.', 'ext.', 'int ', 'ext ']
+	trans_set = ['cut', 'fade', 'transition', 'dissolve']
+	char_max_words = 5
 	meta_thresh = 2
 	sent_thresh = 5
-	trans_thresh = 5
+	trans_thresh = 6
 	# READ PDF/TEXT FILE
 	script_orig = read_file(file_orig)
 	# REMOVE INDENTS
@@ -376,6 +404,21 @@ def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, ab
 	# DETECT SCENE DESCRIPTION
 	tag_vec = get_scene_desc(script_noind, tag_vec, tag_set)
 	#------------------------------------------------------------------------------------
+	# REMOVE UN-TAGGED LINES
+	nz_ind_vec = np.where(tag_vec != '0')[0]
+	tag_valid = []
+	script_valid = []
+	for i, x in enumerate(tag_vec):
+		if x != '0':
+			tag_valid.append(x)
+			script_valid.append(script_noind[i])
+    
+	# UPDATE TAGS
+	tag_valid, script_valid, changed_tags = combine_tag_lines(tag_valid, script_valid)
+	for change_ind in range(len(nz_ind_vec)):
+		if tag_vec[nz_ind_vec[change_ind]] == 'D':
+			tag_vec[nz_ind_vec[change_ind]] = changed_tags[change_ind]
+    
 	# SAVE TAGS TO FILE
 	if tag_flag == 'on':
 		if tag_name is None:
@@ -385,16 +428,7 @@ def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, ab
         
 		np.savetxt(tag_name, tag_vec, fmt='%s', delimiter='\n')
     
-	# REMOVE UN-TAGGED LINES
-	tag_valid = []
-	script_valid = []
-	for i, x in enumerate(tag_vec):
-		if x != '0':
-			tag_valid.append(x)
-			script_valid.append(script_noind[i])
-    
 	# FORMAT TAGS, LINES
-	tag_valid, script_valid = combine_tag_lines(tag_valid, script_valid)
 	max_rev = 0
 	while find_same(tag_valid).shape[0] > 0 or len(find_arrange(tag_valid)[1]) > 0:
 		tag_valid, script_valid = merge_tag_lines(tag_valid, script_valid)
