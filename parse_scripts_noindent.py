@@ -5,6 +5,7 @@ import numpy as np
 import argparse
 import re
 import time
+import codecs
 
 # PROCESS ARGUMENTS
 def read_args():
@@ -23,7 +24,7 @@ def read_args():
 
 # READ FILE
 def read_txt(file_path):
-	fid = open(file_path, 'r')
+	fid = codecs.open(file_path, mode='r', encoding='utf-8')
 	txt_file = fid.read().splitlines()
 	fid.close()
 	return txt_file
@@ -33,7 +34,7 @@ def read_txt(file_path):
 def read_file(file_orig):
 	if file_orig.endswith(".pdf"):
 		file_name = file_orig.replace('.pdf', '.txt')
-		subprocess.call(['pdftotext', '-layout', file_orig, file_name])
+		subprocess.call(['pdftotext', '-enc', 'UTF-8', '-layout', file_orig, file_name])
 		script_orig = read_txt(file_name)
 		subprocess.call('rm ' + file_name, shell=True)
 	elif file_orig.endswith(".txt"):
