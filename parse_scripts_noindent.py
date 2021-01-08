@@ -7,6 +7,7 @@ import re
 import time
 import codecs
 
+
 # PROCESS ARGUMENTS
 def read_args():
 	parser = argparse.ArgumentParser(description='Script that parses a movie script pdf/txt into its constituent classes')
@@ -15,19 +16,41 @@ def read_args():
 	parser.add_argument("-a", "--abridged", help="Print abridged version (on/off)", default='off')
 	parser.add_argument("-t", "--tags", help="Print class label tags (on/off)", default='off')
 	parser.add_argument("-c", "--char", help="Print char info file (on/off)", default='off')
+	parser.add_argument("-f", "--offsets", help="Print offset indices (on/off)", default='off')
 	args = parser.parse_args()
 	if args.abridged not in ['on', 'off']: raise AssertionError("Invalid value. Choose either off or on")
 	if args.tags not in ['on', 'off']: raise AssertionError("Invalid value. Choose either off or on")
 	if args.char not in ['on', 'off']: raise AssertionError("Invalid value. Choose either off or on")
-	return os.path.abspath(args.input), os.path.abspath(args.output), args.abridged, args.tags, args.char
+	if args.offsets not in ['on', 'off']: raise AssertionError("Invalid value. Choose either off or on")
+	return os.path.abspath(args.input), os.path.abspath(args.output), args.abridged, args.tags, args.char, args.offsets
+
+
+# FIND OFFSET INDICES FOR EACH LINE
+def get_offset(script_lines, script_str):
+	offset_mat = np.empty((0, 2), dtype=int)
+	pos_init = 0
+	for line_val in script_lines:
+		if line_val != '':
+			line_start = script_str.find(line_val, pos_init)
+			sub_script = script_str[line_start: (line_start + len(line_val))]
+			valid_indices = [(line_start + i) for i,x in enumerate(sub_script) if x != ' ']
+			offset_mat = np.append(offset_mat, np.array([[min(valid_indices), (max(valid_indices) + 1)]]), axis=0)
+			pos_init = line_start + len(line_val) + 1
+		else:
+			offset_mat = np.append(offset_mat, np.array([[pos_init, (pos_init + 1)]]), axis=0)
+			pos_init += 1
+    
+	return offset_mat + 1
 
 
 # READ FILE
 def read_txt(file_path):
 	fid = codecs.open(file_path, mode='r', encoding='utf-8')
-	txt_file = fid.read().splitlines()
+	txt_file = fid.read()
 	fid.close()
-	return txt_file
+	txt_lines = txt_file.splitlines()
+	txt_offsets = get_offset(txt_lines, txt_file)
+	return txt_lines, txt_offsets
 
 
 # PROCESS FILE
@@ -35,14 +58,14 @@ def read_file(file_orig):
 	if file_orig.endswith(".pdf"):
 		file_name = file_orig.replace('.pdf', '.txt')
 		subprocess.call(['pdftotext', '-enc', 'UTF-8', '-layout', file_orig, file_name])
-		script_orig = read_txt(file_name)
+		script_orig, script_offsets = read_txt(file_name)
 		subprocess.call('rm ' + file_name, shell=True)
 	elif file_orig.endswith(".txt"):
-		script_orig = read_txt(file_orig)
+		script_orig, script_offsets = read_txt(file_orig)
 	else:
 		raise AssertionError("Movie script file format should be either pdf or txt")
     
-	return script_orig
+	return script_orig, script_offsets
 
 
 # DETECT SCENE BOUNDARIES:
@@ -369,7 +392,7 @@ def rearrange_tag_lines(tag_merged, script_merged):
 
 
 # PARSER FUNCTION
-def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, abridged_name=None, tag_name=None):
+def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, off_flag, save_name=None, abridged_name=None, tag_name=None, offset_name=None):
 	#------------------------------------------------------------------------------------
 	# DEFINE
 	tag_set = ['S', 'N', 'C', 'D', 'E', 'T', 'M']
@@ -381,7 +404,7 @@ def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, ab
 	sent_thresh = 5
 	trans_thresh = 6
 	# READ PDF/TEXT FILE
-	script_orig = read_file(file_orig)
+	script_orig, script_offsets = read_file(file_orig)
 	# REMOVE INDENTS
 	alnum_filter = re.compile('[\W_]+', re.UNICODE)
 	script_noind = []
@@ -428,6 +451,15 @@ def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, ab
 			tag_name = os.path.join(save_dir, tag_name)
         
 		np.savetxt(tag_name, tag_vec, fmt='%s', delimiter='\n')
+    
+	# SAVE OFFSETS TO FILE
+	if off_flag == 'on':
+		if offset_name is None:
+			offset_name = os.path.join(save_dir, '.'.join(file_orig.split('/')[-1].split('.')[: -1]) + '_offsets.txt')
+		else:
+			offset_name = os.path.join(save_dir, offset_name)
+        
+		np.savetxt(offset_name, script_offsets, fmt='%s', delimiter=',')
     
 	# FORMAT TAGS, LINES
 	max_rev = 0
@@ -492,5 +524,5 @@ def parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, save_name=None, ab
 
 # MAIN FUNCTION
 if __name__ == "__main__":
-	file_orig, save_dir, abr_flag, tag_flag, char_flag = read_args()
-	parse(file_orig, save_dir, abr_flag, tag_flag, char_flag)
+	file_orig, save_dir, abr_flag, tag_flag, char_flag, off_flag = read_args()
+	parse(file_orig, save_dir, abr_flag, tag_flag, char_flag, off_flag)
