@@ -7,3 +7,9 @@ and Content Analytics (sail.usc.edu/~mica/) group of USC SAIL.
 If you use this code, please cite the paper: `Linguistic analysis of differences in portrayal of movie characters, in: Proceedings of Association for Computational Linguistics, Vancouver, Canada, 2017`. 
 
 For comments, bug reports, etc. contact akramakr@usc.edu
+
+# UPDATE #
+
+`parse_scripts_noindent.py` is the updated parser.
+
+See help message by running `python parse_scripts_noindent.py --help`
